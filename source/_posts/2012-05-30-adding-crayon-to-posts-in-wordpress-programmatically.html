@@ -1,0 +1,27 @@
+---
+layout: post
+title: Adding Crayon To Posts In Wordpress Programmatically
+tags:
+- Crayon
+status: publish
+type: post
+published: true
+meta:
+  dsq_thread_id: '1043021040'
+  _edit_last: '1'
+---
+I've just added a PHP function called `CrayonWP::highlight()` that you provide with string containing Crayons like they appear in the post editor that produces Crayons as you see them on screen. This will let you arbitrarily create Crayons anywhere in your code given some code and then add them to the post content or wherever you like. Just add this to your theme's `functions.php` or  somewhere within your theme.
+<pre class="lang:php decode:true">add_filter('the_content', 'add_crayons_to_content');
+
+function add_crayons_to_content($content) {
+	global $post;
+	$id = $post-&gt;ID;
+	// Generate some code based on post ID etc
+	$some_code = "&lt;strong&gt;hello world&lt;/strong&gt;";
+	$crayon = '&lt;pre class="lang:html toolbar:always mark:1"&gt;' . $some_code . '&lt;/pre&gt;';
+	// Add Crayon to content
+	return $content . CrayonWP::highlight($crayon);
+}</pre>
+This is a simple example that appends some code in a Crayon to the end of every post - you probably don't want it to look the same, so you can provide something dynamic using the post ID instead. This only works in Wordpress - there's a different method that allows more configuration for <a title="Using Crayon Manually in PHP" href="http://localsite.com/ak/crayon/using-crayon-manually-in-php/">using Crayon in other PHP environments</a>.
+
+&nbsp;

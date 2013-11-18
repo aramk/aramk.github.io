@@ -1,0 +1,68 @@
+---
+layout: post
+title: Gap Between Sprites When Moving In cocos2d
+tags:
+- iOS
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '1038456806'
+---
+Today I decided to fix the irritating bug that occurs when moving sprites. Due to the OpenGL rendering, when we use the update() delta to move sprites they can move by sub pixels and this causes a small gap to appear between the two sprites that are used to form a continuous moving background. I used this logic in my parallax effects. There are numerous proposed solutions, but it is apparently due to the OpenGL's requirement that the sprites dimensions are powers of 2. I tried 64 which worked just fine, but 37 did not.
+
+<strong>UPDATE:</strong>
+
+After trying things out again with different images, the proposed buffer pixel doesn't work - even if you move the sprites pixel by pixel, a gap still appears. It appears that movement is irrelevant here - even placing the sprites at this discrete location e.g.(92,100) can cause the gap. The solution depends on the situation:
+
+If you have sprite sizes of powers of 2, there should be no problem. Try 16, 32, 64 etc. Scaling the layer is also not a problem.</li>
+
+If you don't have sprite sizes of powers of 2, then you're best bet is to use:
+
+<code>[[CCDirector sharedDirector] setProjection:CCDirectorProjection2D];</code>
+
+And keep a scale of 1 for your layer containing the sprites. If you set the scale to anything else, once again the gap will appear.
+
+If you are setting the scale to anything but 1, then the gap will originate once more. This sort of renders my original post almost useless, but I thought I'd leave the code for the pixel buffer if its ever useful.
+
+<a href="http://www.mediafire.com/?1mhobz7tuc9v85u">Updated Code</a>
+
+<strong>OLD POST:</strong>
+
+The pixel buffer method only works in some cases, but the movement is not as smooth.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2011/12/Screen-Shot-2011-12-29-at-12.58.43-AM.png"><img style="float:left; margin: 10px;" src="http://localsite.com/ak/wp-content/uploads/2011/12/Screen-Shot-2011-12-29-at-12.58.43-AM.png" alt="" title="" width="67" height="212" class="size-full wp-image-715" /></a>
+
+The blue and green 8px wide sprites are moving together. The top copy is the default effect with a black gap, the bottom when using the buffer. The white lines actually blur due to the anti-aliasing effect, while the buffer keeps it clear. Here's a video: <a href="http://www.youtube.com/watch?v=ko4WLkWiwx8">http://www.youtube.com/watch?v=ko4WLkWiwx8</a>
+
+I tried setting <code>CC_COCOSNODE_RENDER_SUBPIXEL</code> to 0 in ccConfig.h to no effect.
+
+The idea is to create a pixel buffer and move the sprites only when the buffer exceeds 1. If the buffer is 3.456, then we would move 3 and keep the buffer at 0.456 for the next update() call. Here's a snippet of the code:
+
+<pre class="lang:objc " >
+-(void) update:(ccTime)dt {
+	// Move by some factor of delta
+	buffer += dt*16;
+	
+	// A and B use pixel buffer
+	if (buffer >= 1) {	
+		float units = 0;
+		float rem = modff(buffer, &units);
+		buffer = rem;
+		a.position = ccp(a.position.x - units, a.position.y);
+		b.position = ccp(b.position.x - units, b.position.y);
+	}
+	
+	// C and D move as usual, causing the black gap between sprites
+	c.position = ccp(c.position.x - dt*16, c.position.y);
+	d.position = ccp(d.position.x - dt*16, d.position.y);
+	
+	// Log the movement
+	NSLog(@"a %f c %f diff %f", a.position.x, c.position.x, a.position.x - c.position.x);
+}
+</pre>
+
+However it is implemented, the key idea is the same - add up the amount moved and when it is greater than 1, move it by as many discrete pixels as possible, keeping the remainder for later. The difference in the positions when using the standard approach and the buffer is guaranteed to be less than 1 at any given time. I have attached a very small sample project to show how this works below:
+
+<a href="http://www.mediafire.com/?qhjdbynmlsexnvf">Download Sample Code</a>

@@ -1,0 +1,68 @@
+---
+layout: post
+title: Converting Legacy Tags to Pre Tags
+tags:
+- Crayon
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '1044077028'
+  _wp_old_slug: converting-legacy-tags-to
+---
+If you've been using Crayon Mini Tags or other syntax highlighters with syntax like:
+
+<code>[php title="testing"]some code[/php]</code>
+
+Or any other legacy Crayon tags:
+
+<code>$[crayon lang="php" title="testing"]some code[/crayon]</code>
+
+Then you might like to convert your blog's old code format into a better standard:
+
+<code>&lt;pre class="lang:php decode:true" title="Testing"&gt;some code&lt;/pre&gt;</code>
+
+The benefits are backwards compatibility (if Crayon is disabled or you use another highlighter) and the ability to use the <a href="http://localsite.com/ak/projects/crayon-tag-editor/" target="_blank">Crayon Tag Editor</a> in the visual editor of Wordpress).
+
+<em>Note:</em> decode:true means that the code is encoded, so any &lt; characters in the visual editor are really &amp;lt; in the HTML editor to ensure they are valid HTML entities.
+
+Say I have this in Wordpress, switching to the HTML editor:
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/09/Screen-Shot-2012-09-26-at-12.04.07-AM.png"><img class="aligncenter size-full wp-image-1007" title="Screen Shot 2012-09-26 at 12.04.07 AM" src="http://localsite.com/ak/wp-content/uploads/2012/09/Screen-Shot-2012-09-26-at-12.04.07-AM.png" alt="" width="675" height="139" /></a>
+
+From Crayon 1.12 there is a new setting in the admin:
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/09/Screen-Shot-2012-09-26-at-12.04.16-AM.png"><img class="aligncenter size-full wp-image-1009" title="Screen Shot 2012-09-26 at 12.04.16 AM" src="http://localsite.com/ak/wp-content/uploads/2012/09/Screen-Shot-2012-09-26-at-12.04.16-AM.png" alt="" width="646" height="131" /></a>
+
+At the moment there are no detected legacy tags in any of my blog posts or comments. Lets add one:
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/09/Screen-Shot-2012-09-26-at-12.04.44-AM.png"><img class="aligncenter size-full wp-image-1010" title="Screen Shot 2012-09-26 at 12.04.44 AM" src="http://localsite.com/ak/wp-content/uploads/2012/09/Screen-Shot-2012-09-26-at-12.04.44-AM.png" alt="" width="678" height="147" /></a>
+
+Now in settings, we see the button available:
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/09/Screen-Shot-2012-09-26-at-12.04.59-AM.png"><img class="aligncenter size-full wp-image-1011" title="Screen Shot 2012-09-26 at 12.04.59 AM" src="http://localsite.com/ak/wp-content/uploads/2012/09/Screen-Shot-2012-09-26-at-12.04.59-AM.png" alt="" width="617" height="121" /></a>
+
+Clicking it will convert your legacy Crayon tag! Refresh the editor to see the change:
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/09/Screen-Shot-2012-09-26-at-12.05.32-AM.png"><img class="aligncenter size-full wp-image-1012" title="Screen Shot 2012-09-26 at 12.05.32 AM" src="http://localsite.com/ak/wp-content/uploads/2012/09/Screen-Shot-2012-09-26-at-12.05.32-AM.png" alt="" width="681" height="153" /></a>
+
+And of course, it should look exactly the same on the front end:
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/09/Screen-Shot-2012-09-26-at-12.05.10-AM.png"><img class="aligncenter size-full wp-image-1013" title="Screen Shot 2012-09-26 at 12.05.10 AM" src="http://localsite.com/ak/wp-content/uploads/2012/09/Screen-Shot-2012-09-26-at-12.05.10-AM.png" alt="" width="672" height="174" /></a>
+
+If you keep using the legacy tags and Crayon is disabled, it looks like this:
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/09/Screen-Shot-2012-09-26-at-12.26.35-AM.png"><img class="aligncenter size-full wp-image-1014" title="Screen Shot 2012-09-26 at 12.26.35 AM" src="http://localsite.com/ak/wp-content/uploads/2012/09/Screen-Shot-2012-09-26-at-12.26.35-AM.png" alt="" width="666" height="194" /></a>
+
+Since the legacy code is just text in the editor, it looks like text if Crayon isn't enabled. The &lt;pre&gt; tag however looks much better as preformatted plain text, and it hides all of your settings in the class attribute.
+
+One warning however, is to <strong>always backup your database before converting your tags</strong> - since this will change your post/comment content it's safer to have something to rollback to.
+
+The beta version of Crayon (1.12 at the time of writing) can be <a href="https://github.com/aramkocharyan/crayon-syntax-highlighter/downloads" target="_blank">downloaded from GitHub</a>.
+
+<strong>UPDATE: </strong>As of the latest version, converting legacy tags now has an "encode" option. If selected, any legacy tag where the "decode" attribute is missing (neither true or false) has its code encoded and decode="true" specified. This is useful if you have been using &lt; and &gt; instead of &amp;lt; and &amp;gt; in your [php] tags for example - this method is dangerous since disabling Crayon will mean these tags will be recognised as HTML tags. So something like this will actually be executed rather than displayed as code:
+
+<code>[html]&lt;script&gt;alert("bam!")&lt;/script&gt;[/html]</code>
+
+The correct approach is to use encoded characters in all your HTML output; including your code snippets.

@@ -1,0 +1,22 @@
+---
+layout: post
+title: Mini Tags And Plain Tags In Crayon
+tags:
+- Crayon
+- PHP
+- Projects
+- WordPress
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: ''
+---
+<div style="clear: both; float: left;"><a href="http://localsite.com/ak/wp-content/uploads/2011/12/warning.png"><img class="size-full wp-image-1031 alignleft" title="warning" src="http://localsite.com/ak/wp-content/uploads/2011/12/warning.png" alt="" width="80" height="72" /></a>
+<strong>Warning:</strong> Mini Tags are depreciated in favour of &lt;pre&gt; tags. &lt;pre&gt; tags are backward compatible, html5 valid and usable in the new <a href="http://localsite.com/ak/projects/crayon-tag-editor/" target="_blank">Tag Editor</a>. If you have old blog posts that use Mini Tags, you can <a href="http://localsite.com/ak/crayon/converting-legacy-tags-to-pre/" target="_blank">convert them</a> automatically from the settings screen.</div>
+Writing <code>$[php theme="twilight"]echo 123;[/php]</code> turns into <code>$[crayon theme="twilight" lang="php"]echo 123;[/crayon]</code>. No more do you need to retype the plugin's charming name anymore - just the language and the settings you care about. If you want, you can turn this off in Settings (like everything else). Also, you can use <code>&lt;pre lang="php"&gt;&lt;/pre&gt;</code> if you'd like some backward compatibility with plugins that support this style of shortcode. Here's an example of using Mini Tags and the output it generated. I've also added a new <code>$[plain]...[/plain]</code> tag that allows you to wrap any code in <code>&lt;pre&gt;&lt;code&gt; ... &lt;/code&gt;&lt;/pre&gt;</code> syntax for showing any syntax without using Crayon. It will also convert any nasty characters into HTML entities for you, so everything will look exactly as it does in the HTML view of the post editor. The IDs of the languages like "php" and "py" can be found in Settings &gt; Crayon &gt; Languages &gt; Show Languages in WP admin. <pre class="crayon-plain-tag">$[html theme="twilight"]
+
+<!-- groovy --><strong>Here's some XHTML!</strong>
+
+<!--?php<br /-->// A sample class class Human { private int age = 0; public void birthday() { age++; print('Happy Birthday!'); } } ?&gt; [/html] $[py] # Merge example def mergeWithoutOverlap(oneDict, otherDict): newDict = oneDict.copy() for key in otherDict.keys(): if key in oneDict.keys(): raise ValueError, "the two dictionaries are sharing keys!" newDict[key] = otherDict[key] return newDict [/py]</pre> <a href="http://localsite.com/ak/wp-content/uploads/2011/12/Screen-Shot-2011-12-27-at-8.53.34-PM.png"><img class="aligncenter size-full wp-image-702" title="" src="http://localsite.com/ak/wp-content/uploads/2011/12/Screen-Shot-2011-12-27-at-8.53.34-PM.png" alt="" width="592" height="414" /></a>

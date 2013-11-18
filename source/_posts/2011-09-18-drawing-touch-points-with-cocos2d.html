@@ -1,0 +1,84 @@
+---
+layout: post
+title: Drawing touch points with cocos2d
+tags:
+- iOS
+- Projects
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '1038005580'
+---
+I've been experimenting with cocos2d for iOS development and made a very simple program that grabs the touch locations on the screen and draws the points. It uses a C++ vector to store the CGPoint primitives and the draw: message takes care of drawing them, whenever we fill the vector with points.
+
+<img src="http://localsite.com/ak/wp-content/uploads/2011/09/Screen-Shot-2011-09-18-at-2.16.31-AM.png" /><br/>
+
+Here's the draw:
+
+<pre class="lang:objc " >
+static std::vector<CGPoint>points;
+...
+
+-(void) draw {
+...
+	// Draw points
+	glPointSize(4);
+	for (int i = 0; i < points.size(); i++) {
+		glColor4ub(0,255,0,255); // Green
+		CGPoint p = points.at(i);
+		ccDrawPoint(p);
+		
+		glColor4ub(255,255,255,255); // White
+		CGPoint *vertices = &points[0]; // Vector to array
+		ccDrawPoly(vertices, points.size(), NO);
+	}
+...
+}
+</pre>
+
+And here's how the points are captured:
+
+<pre class="lang:objc " >
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *myTouch = [touches anyObject];
+    CGPoint location = [myTouch locationInView:[myTouch view]];
+    location = [[CCDirector sharedDirector] convertToGL:location];
+    b2Vec2 locationWorld = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
+	
+	NSLog(@"TOUCH BEGIN %f %f", location.x, location.y);
+	
+	points.clear();
+	points.push_back(location);
+}
+
+-(void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *myTouch = [touches anyObject];
+    CGPoint location = [myTouch locationInView:[myTouch view]];
+    location = [[CCDirector sharedDirector] convertToGL:location];
+    b2Vec2 locationWorld = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
+    
+	points.push_back(location);
+}
+
+-(void)ccTouchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    points.clear();
+}
+
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+	UITouch *myTouch = [touches anyObject];
+    CGPoint location = [myTouch locationInView:[myTouch view]];
+    location = [[CCDirector sharedDirector] convertToGL:location];
+    b2Vec2 locationWorld = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
+	
+    NSLog(@"TOUCH END %f %f", location.x, location.y);
+	
+	for (int i = 0; i < points.size(); i++) {
+		CGPoint p = points.at(i);
+		NSLog(@" TOUCH @ %f %f", p.x, p.y);
+	}
+}
+</pre>
+
+<a href="https://github.com/aramkocharyan/cocos2d-Sandbox/tree/master/DrawTest" target="_blank">Download Xcode Project</a>

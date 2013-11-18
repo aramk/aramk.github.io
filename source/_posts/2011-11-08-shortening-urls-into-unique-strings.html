@@ -1,0 +1,41 @@
+---
+layout: post
+title: Shortening URLs Into "Unique" Strings
+tags:
+- PHP
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '589723877'
+---
+I needed to make a URL into a maximum of 40 characters of uniqueness, so I had a stab at it. This removes every nth character in the string (spaced out across the string's length) until it reaches the required size. If the url isn't above the max length (after removing URL syntax), then it is kept as is. This is somewhat naive, but it works pretty well. It's useful for storing URLs under keys. Another, perhaps better approach is <a href="http://localsite.com/ak/php/create-unique-id-from-string/" title="Create Unique ID From String">this</a>.
+
+<pre class="lang:php " >
+
+// Example
+$length = 40;
+echo shorten_url_to_length('https://raw.github.com/aramkocharyan/jQueryPopup/master/example.html', $length);
+// rawithbcoarakocarynjQeryopumasereampehtl
+echo shorten_url_to_length('http://www.google.com/', $length);
+// wwwgooglecom
+
+function shorten_url_to_length($url, $length) {
+	if ($length < 1) {
+		return '';
+	}
+	$url = preg_replace('#(^w+://)|([/.])#si', '', $url);
+	if (strlen($url) > $length) {
+		$diff = strlen($url) - $length;
+		$rem = floor(strlen($url)/$diff);
+		$rem_count = 0;
+		for ($i = $rem-1; $i < strlen($url) && $rem_count < $diff; $i=$i+$rem) {
+			$url[$i] = '.';
+			$rem_count++;
+		}
+		$url = preg_replace('#.#s', '', $url);
+	}
+	return $url;
+}
+</pre>

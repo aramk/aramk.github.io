@@ -1,0 +1,91 @@
+---
+layout: post
+title: Generic Stack for Objective-C
+tags:
+- iOS
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '1038306436'
+---
+Here's a simple stack to store any ol' object in Objective-C.
+
+<pre class="lang:objc title:FMStack.h " >
+//
+//	Generic Stack v1.0
+//  By Aram Kocharyan. http://localsite.com/ak/
+//
+
+#import <Foundation/Foundation.h>
+
+static const int kFMStackDefaultCapacity = 10;
+
+@interface FMStack : NSObject {
+	NSMutableArray *stack;
+}
+
++ (id)stack;
++ (id)stackWithCapacity:(int)capacity;
+- (id)initWithCapacity:(int)capacity;
+
+- (void)push:(id)object;
+- (id)pop;
+- (void)clear;
+- (int)count;
+
+@end
+</pre>
+
+<pre class="lang:objc title:FMStack.m " >
+//
+//	Generic Stack v1.0
+//  By Aram Kocharyan. http://localsite.com/ak/
+//
+
+#import "FMStack.h"
+
+@implementation FMStack
+
++ (id)stack {
+	return [[[self alloc] init] autorelease];
+}
+
++ (id)stackWithCapacity:(int)capacity {
+	return [[[self alloc] initWithCapacity:capacity] autorelease];
+}
+
+- (id)init {
+    return [self initWithCapacity:kFMStackDefaultCapacity];
+}
+
+- (id)initWithCapacity:(int)capacity {
+	self = [super init];
+    if (self) {
+		stack = [[NSMutableArray alloc] initWithCapacity:capacity];
+	}
+	return self;
+}
+
+- (void)push:(id)object {
+	[stack addObject:object];
+}
+
+- (id)pop {
+	id object = [stack lastObject];
+	NSAssert(object != nil, @"Nothing to pop from stack");
+	[stack removeObject:object];
+	return object;
+}
+
+- (void)clear {
+	[stack removeAllObjects];
+}
+
+- (int)count {
+	return [stack count];
+}
+
+@end
+</pre>

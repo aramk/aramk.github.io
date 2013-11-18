@@ -1,0 +1,21 @@
+---
+layout: post
+title: jQuery Blink Effect
+tags:
+- JavaScript
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '776027420'
+---
+This will cause any element to blink, with the option to provide a duration for its disappearance.
+<pre class="lang:js decode:true crayon-selected">$.fn.blink = function(time) {
+	var time = typeof time == 'undefined' ? 200 : time;
+	$(this).hide(0).delay(time).show(0);
+}
+
+// Example
+$('.something').blink();</pre>
+&nbsp;

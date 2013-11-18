@@ -1,0 +1,49 @@
+---
+layout: post
+title: The Horrors of Using preg_replace
+tags:
+- PHP
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '571196695'
+---
+If you're going to use replacement text that has '$' or '' in it, chances are it is going to be treated as a backreference. Any parentheses you include in your regex will be captured and placed into the replacement text. If you don't want this, you need to escape the '$' as '$' and the '' as '\'. One example is if you wanted to replace 'COST' with '$12345'. The preg_replace_escape_back() function will sort this out:
+
+<pre class="lang:php " >
+<?php
+
+// Escapes $ and  from the replacement to avoid becoming a backreference
+function preg_replace_escape_back($pattern, $replacement, $subject) {
+	return preg_replace($pattern, preg_escape_back($replacement), $subject);
+}
+
+// Escape backreferences from string for use with regex
+function preg_escape_back($string) {
+	// Replace $ with $ and  with \
+	$string = preg_replace('#(\$|\\)#', '\\$1', $string);
+	return $string;
+}
+
+
+// EXAMPLE:
+
+$a = 'Price COST';
+
+// Either of these will backreference and fail
+$b1 = '12345'; // Should be '\12345' to avoid backreference
+$b2 = '$12345'; // Should be '$12345' to avoid backreference
+
+$d = array($b1, $b2);
+
+foreach ($d as $b) {
+	$result1 = preg_replace('#(COST)#', $b, $a); // Fails
+	var_dump($result1);
+	$result2 = preg_replace_escape_back('#(COST)#', $b, $a); // Succeeds
+	var_dump($result2);
+}
+
+?>
+</pre>

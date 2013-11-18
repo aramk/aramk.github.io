@@ -1,0 +1,32 @@
+---
+layout: post
+title: JavaScript Module Pattern
+tags:
+- JavaScript
+status: publish
+type: post
+published: true
+meta:
+  dsq_thread_id: '1043852449'
+  _edit_last: '1'
+---
+My take on the JavaScript module pattern. I needed to call init() when ready.
+
+<pre class="lang:js decode:true">(function($) {
+
+	window.moduleName = new function() {
+		var base = this;
+
+		// Internally visible
+		var pvt = '123';
+
+		// Externally visible
+		base.init = function() {
+			console.log('init');
+		};
+	};
+
+})(jQuery);
+
+console.log(moduleName.init);</pre>
+&nbsp;

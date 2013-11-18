@@ -1,0 +1,139 @@
+---
+layout: post
+title: IMDb Scraper / Grabber
+tags:
+- imdb
+- imdb grabber
+- imdb php
+- imdb scraper
+- internet movie database
+- PHP
+- Projects
+- scraper
+status: publish
+type: post
+published: true
+meta:
+  name: ''
+  _edit_last: '1'
+  version: ''
+  desc: ''
+  usage: ''
+  param: ''
+  return: ''
+  dsq_thread_id: '1038398049'
+---
+I was working on an Econometrics project and we needed to get a lot of data for a long list of tv shows. One good source was iMDB, but we didn't feel like typing in the details of 1800 records... That's when I had the idea of making a PHP scraper to get the info for us. I've polished it up and it's easier to use now.
+<div class="centered-button"><a class="ak-button" href="https://github.com/aramkocharyan/IMDb-Scraper">Download IMDbScraper from GitHub</a></div>
+The simplest example is:
+<pre>// Perform a search and get info on 'inception'
+IMDbScraper::get('inception');
+
+// Output:
+
+array(17) {
+  ["name"]=&gt;
+  string(9) "Inception"
+  ["desc"]=&gt;
+  string(205) "In a world where technology exists to enter the human mind through dream invasion, a highly skilled thief is given a final chance at redemption which involves executing his toughest job to date: Inception."
+  ["date"]=&gt;
+  string(4) "2010"
+  ["duration"]=&gt;
+  string(7) "148 min"
+  ["director"]=&gt;
+  string(0) ""
+  ["writer"]=&gt;
+  string(17) "Christopher Nolan"
+  ["creator"]=&gt;
+  string(0) ""
+  ["cast"]=&gt;
+  array(15) {
+    [0]=&gt;
+    string(17) "Leonardo DiCaprio"
+    [1]=&gt;
+    string(20) "Joseph Gordon-Levitt"
+    [2]=&gt;
+    string(10) "Ellen Page"
+    [3]=&gt;
+    string(9) "Tom Hardy"
+    [4]=&gt;
+    string(12) "Ken Watanabe"
+    [5]=&gt;
+    string(10) "Dileep Rao"
+    [6]=&gt;
+    string(14) "Cillian Murphy"
+    [7]=&gt;
+    string(12) "Tom Berenger"
+    [8]=&gt;
+    string(16) "Marion Cotillard"
+    [9]=&gt;
+    string(18) "Pete Postlethwaite"
+    [10]=&gt;
+    string(13) "Michael Caine"
+    [11]=&gt;
+    string(10) "Lukas Haas"
+    [12]=&gt;
+    string(10) "Tai-Li Lee"
+    [13]=&gt;
+    string(12) "Claire Geare"
+    [14]=&gt;
+    string(12) "Magnus Nolan"
+  }
+  ["genres"]=&gt;
+  array(3) {
+    [0]=&gt;
+    string(6) "Action"
+    [1]=&gt;
+    string(9) "Adventure"
+    [2]=&gt;
+    string(6) "Sci-Fi"
+  }
+  ["plot"]=&gt;
+  string(927) "Dom Cobb is a skilled thief, the absolute best in the dangerous art of extraction, stealing valuable secrets from deep within the subconscious during the dream state, when the mind is at its most vulnerable. Cobb's rare ability has made him a coveted player in this treacherous new world of corporate espionage, but it has also made him an international fugitive and cost him everything he has ever loved. Now Cobb is being offered a chance at redemption. One last job could give him his life back but only if he can accomplish the impossible-inception. Instead of the perfect heist, Cobb and his team of specialists have to pull off the reverse: their task is not to steal an idea but to plant one. If they succeed, it could be the perfect crime. But no amount of careful planning or expertise can prepare the team for the dangerous enemy that seems to predict their every move. An enemy that only Cobb could have seen coming."
+  ["rating"]=&gt;
+  string(3) "8.9"
+  ["max-rating"]=&gt;
+  string(2) "10"
+  ["voter-count"]=&gt;
+  string(7) "413,580"
+  ["user-review-count"]=&gt;
+  string(5) "2,095"
+  ["critic-review-count"]=&gt;
+  string(3) "524"
+  ["id"]=&gt;
+  string(9) "tt1375666"
+  ["url"]=&gt;
+  string(36) "http://www.imdb.com/title/tt1375666/"
+}</pre>
+Some more examples:
+<pre>// Import required files
+require_once('imdb_scraper.php');
+require_once('csv.php'); // CSV helper functions
+
+/* SIMPLE SEARCH FUNCTIONS */
+
+	/* Find full info using title, year is optional */
+	var_dump( IMDbScraper::get('spongebob movie', '1999') );
+
+	/* Find id and title of best search result, optional year */
+	var_dump( IMDbScraper::find('spongebob movie', '1999') );
+	var_dump( IMDbScraper::find('spongebob movie') );
+
+	/* Return search results for title query, optional year */
+	var_dump( IMDbScraper::search('spongebob') );
+	var_dump( IMDbScraper::search('spongebob', '1999') );
+
+/* SAVING TO / READING FROM CSV FILE */
+
+	/* Write to CSV */
+	var_dump( csv_write(IMDbScraper::search('spongebob'), 'example_files/example.csv') );
+	/* Read from CSV */
+	var_dump( csv_read('example_files/example.csv') );
+
+/* ADVANCED SEARCH FUNCTIONS */
+
+	/* Scrape information from a saved IMDb search page, given as an HTML string */
+	var_dump( IMDbScraper::scrape_search( file_get_contents('example_files/saved_search.html')) );
+
+	/* Scrape information from a saved IMDb title page, given as an HTML string */
+	var_dump( IMDbScraper::scrape_info( file_get_contents('example_files/saved_title.html')) );</pre>

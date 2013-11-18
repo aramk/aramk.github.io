@@ -1,0 +1,27 @@
+---
+layout: post
+title: Disable NSLog When Not Using Simulator in Xcode
+tags:
+- iOS
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '1040038099'
+---
+If you're testing a game on a device, it's good to disable NSLogs, since you're not going to read them unless you've got it plugged into Xcode and viewing the debugger. I usually test on the device once I'm satisfied it works in the Simulator.
+
+<pre class="lang:c " >
+#if !defined(DEBUG) || !(TARGET_IPHONE_SIMULATOR)
+    #define NSLog(...)
+#endif
+</pre>
+
+If you still want to have the NSLogs on the device:
+
+<pre class="lang:c " >
+#ifndef(DEBUG)
+    #define NSLog(...)
+#endif
+</pre>

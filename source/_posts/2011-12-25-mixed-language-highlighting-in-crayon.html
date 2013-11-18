@@ -1,0 +1,23 @@
+---
+layout: post
+title: Mixed Language Highlighting in Crayon
+tags:
+- Crayon
+- PHP
+- Projects
+- WordPress
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  _wp_old_slug: mixed-language-highlighting-in-crayon-1-7-0
+  dsq_thread_id: '1040990120'
+---
+As was promised, in Crayon 1.7.0 I have added the ability to highlight multiple languages at once in a single Crayon. This is useful when you're showing an HTML page with PHP with the <code>&lt;?php...?></code> delimiters, JavaScript with the <code>&lt;script></code> tag and CSS with the <code>&lt;style></code> tag. The delimiter regex is defined in <code>/langs/delimiters.txt</code> and there are two new settings added under "Code".
+
+<a href="http://localsite.com/ak/wp-content/uploads/2011/12/1.7.0-2.png"><img src="http://localsite.com/ak/wp-content/uploads/2011/12/1.7.0-2.png" alt="" title="" width="652" height="737" class="aligncenter size-full wp-image-689" /></a>
+
+You'll see a "+" sign by default when multiple languages are detected in your Crayon, and you can hide this if you like. Also, you can disable this mixed highlighting feature by using the attribute like so: <code>&lt;pre lang="html" mixed="false">&lt;/pre></code>. Oh, and you can also use <code>&lt;pre>&lt;/pre></code> tags instead of <code>$[crayon]</code> tags now :)
+
+So I hope that this nice addition proves useful, enjoy.

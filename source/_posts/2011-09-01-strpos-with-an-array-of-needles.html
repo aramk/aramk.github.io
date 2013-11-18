@@ -1,0 +1,40 @@
+---
+layout: post
+title: strpos with an array of needles
+tags:
+- PHP
+status: publish
+type: post
+published: true
+meta:
+  param: ''
+  desc: ''
+  usage: ''
+  _edit_last: '1'
+  name: ''
+  version: ''
+  return: ''
+  dsq_thread_id: '576958638'
+---
+Here's a quick function to search a string for the position of several string occurrences. Once one is found, it returns the position.
+
+<pre class="" >
+// strpos with an array of $needles
+function strposa($haystack, $needles) {
+	if (is_array($needles)) {
+		foreach ($needles as $str) {
+			if (is_array($str)) {
+				$pos = strposa($haystack, $str);
+			} else {
+				$pos = strpos($haystack, $str);
+			}
+			if ($pos !== FALSE) {
+				return $pos;
+			}
+		}
+		return FALSE;
+	} else {
+		return strpos($haystack, $needles);
+	}
+}
+</pre>

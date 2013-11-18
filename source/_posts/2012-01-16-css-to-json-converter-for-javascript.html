@@ -1,0 +1,28 @@
+---
+layout: post
+title: CSS to JSON Converter for JavaScript
+tags:
+- JavaScript
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '1040012717'
+---
+I've put together a script that converts CSS to JSON and back to CSS. I'll be using it to build a Theme Editor in Crayon.
+
+<pre class="lang:js " >
+// To JSON, ignoring order of comments etc
+var json = CSSJSON.toJSON(cssString);
+
+// To JSON, keeping order of comments etc
+var json = CSSJSON.toJSON(cssString, true);
+	
+// To CSS
+var css = CSSJSON.toCSS(jsonObject);
+</pre>
+
+The sample.html file that demonstrates the script, along with the script itself, can be found on GitHub:
+
+<a href="https://github.com/aramkocharyan/CSSJSON">https://github.com/aramkocharyan/CSSJSON</a>

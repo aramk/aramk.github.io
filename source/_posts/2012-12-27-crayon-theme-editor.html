@@ -1,0 +1,63 @@
+---
+layout: post
+title: Crayon Theme Editor
+tags:
+- Crayon
+status: publish
+type: post
+published: true
+meta:
+  dsq_thread_id: '1038864741'
+  _edit_last: '1'
+---
+The Theme Editor allows you to duplicate and modify custom themes compatible with Crayon using an integrated user interface and <em>no CSS knowledge</em> whatsoever. Of course, make changes to your theme by editing the CSS is also possible before and after using the theme editor.
+
+You can access the theme editor in Wordpress admin under <strong>Settings &gt; Crayon</strong>:
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2013-01-02-at-1.44.40-AM.png"><img class="aligncenter size-full wp-image-1138" title="Screen Shot 2013-01-02 at 1.44.40 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2013-01-02-at-1.44.40-AM.png" alt="" width="756" height="236" /></a>
+
+The Theme section displays the information about the current theme, a toolbar for performing theme editor actions and the Live Preview. Modifying any settings automatically refreshes this preview before submitting the settings page.
+<h2>Theme Types</h2>
+Crayon stores the <strong>Stock Themes</strong> which come with the plugin under this path:
+
+<code>wp-content/plugins/crayon-syntax-highlighter/themes</code>
+
+To allow modifying these themes and preserving changes, Crayon stores <strong>User Themes</strong> under this path:
+
+<code>wp-content/uploads/crayon-syntax-highlighter/themes</code>
+
+This avoids any changes being overwritten during updates to the plugin. Stock themes can't be deleted or modified for this reason - unless you enable <code>CRAYON_DEBUG</code> in <code>globals.php</code>. Of course, modifying the theme CSS is independent of the Theme Editor, but keep in mind that your changes will be lost when updating the plugin.
+<h2>Creating Themes</h2>
+Start by selecting an existing theme which is the closest appearance you're trying to create. To play it safe, start with the Classic theme. Click Duplicate and type in a new name.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-12.54.10-AM.png"><img class="aligncenter size-full wp-image-1110" title="Screen Shot 2012-12-30 at 12.54.10 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-12.54.10-AM.png" alt="" width="280" height="160" /></a>
+
+The theme is duplicated as a User Theme. Now click Edit to load the Theme Editor.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.01.26-AM.png"><img class="aligncenter size-full wp-image-1112" title="Screen Shot 2012-12-30 at 1.01.26 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.01.26-AM.png" alt="" width="785" height="339" /></a>
+
+One handy feature of the editor is that modifications take place live just like in the regular settings page - so changing the language or settings will also change them in the theme editor, allowing you to see how your changes will look like for different settings.
+
+On the right side you'll see the editor controls. The first tab allows you to change information about the theme. Saving the theme is possible at any time and doesn't require a reload unless you change the name of the theme. You can also look at the CSS with a link below the name.
+
+Next, I might want to change the appearance of the frame and line colours.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.06.39-AM.png"><img class="aligncenter size-full wp-image-1113" title="Screen Shot 2012-12-30 at 1.06.39 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.06.39-AM.png" alt="" width="781" height="288" /></a>
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.07.43-AM.png"><img class="aligncenter size-full wp-image-1114" title="Screen Shot 2012-12-30 at 1.07.43 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.07.43-AM.png" alt="" width="779" height="375" /></a>
+
+Next, I can change the line numbers.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.19.57-AM.png"><img class="aligncenter size-full wp-image-1115" title="Screen Shot 2012-12-30 at 1.19.57 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.19.57-AM.png" alt="" width="777" height="549" /></a>
+
+And then the toolbar.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.55.15-AM.png"><img class="aligncenter size-full wp-image-1116" title="Screen Shot 2012-12-30 at 1.55.15 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.55.15-AM.png" alt="" width="780" height="409" /></a>
+
+Finally, we can take a look at the highlighting! I've left this till last since I wanted to make sure I have the overall look of the new theme first.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-2.03.45-AM.png"><img class="aligncenter size-full wp-image-1118" title="Screen Shot 2012-12-30 at 2.03.45 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-2.03.45-AM.png" alt="" width="778" height="750" /></a>
+
+And there we have it, a new theme! Tinker with the settings until you have the right look. This theme is obviously a 5 minute demonstration and the some of the stock themes that people have put together look amazing comparatively - but the important thing to take away from this post is that creating themes is now super quick and very much integrated into Crayon!
+<h2>Submitting a Theme</h2>
+Remember, if you happen to create a theme you're especially proud of, please use the <strong>Submit</strong> button - it will zip up your theme and email it to me and I'll include it as a Stock Theme for others to enjoy!

@@ -1,0 +1,22 @@
+---
+layout: post
+title: Loading CSS and JavaScript only when required in a WordPress Plugin
+tags:
+- PHP
+- WordPress
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '1037846398'
+---
+<strong>Update: </strong>As pointed out <a href="http://wordpress.org/support/topic/crayon-code-is-generated-for-every-post?replies=1" target="_blank">here</a>, you'll also want to disable the option "Display the Tag Editor in any TinyMCE instances on the frontend".
+
+Recently I was made aware of yet further problems with attempting to optimise Crayon so it only loaded its resources when it was required - when the <code>$[crayon]</code> shortcode was being used in a post on the page. This was taken care of by using the <code>the_posts</code> filter in Wordpress detailed <a href="http://beerpla.net/2010/01/13/wordpress-plugin-development-how-to-include-css-and-javascript-conditionally-and-only-when-needed-by-the-posts/">here</a>. However, this method poses a problem if subsequent queries are made after the initial one, since only the initial query occurs before <code>wp_head</code>, where our scripts and styles are loaded.
+
+Basically, if the theme on a site is set up in such a way as to request posts without Crayon shortcodes initially (say, for the sidebar) before the main loop request containing all the posts in that page (which do contain the shortcode) then this method of detection will fail. As a result, I've decided to play it safe in version 1.6.3 and allow the option of <strong>always</strong> including the CSS and JavaScript files on each and every page. A setting is now available under Settings &gt; Crayon &gt; Misc. which allows you to toggle the efficient enqueuing. When enabled, Crayon will try to load these resources only when needed, but as mentioned before, this may or may not work depending on the structure of your theme. I think this will sort of all the problems some people are having. I've tested the plugin with the most popular themes and haven't found any problems with them, so it's an issue affecting the minority.
+
+If you're having issues with CSS and JS not loading - leave this efficiency setting off (default). If all is well for you, turn it on.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2011/12/enqueue.png"><img class="aligncenter size-full wp-image-664" title="" src="http://localsite.com/ak/wp-content/uploads/2011/12/enqueue.png" alt="" width="547" height="119" /></a>

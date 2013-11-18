@@ -1,0 +1,33 @@
+---
+layout: post
+title: Removing Unfinished Sentences From Paragraphs
+tags:
+- PHP
+- Random
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '616528342'
+---
+These are helpful after you strip a paragraph for a word limit and want to cut off the last incomplete sentence.
+
+<pre class="lang:php " >
+// Remove the last unfinished sentence in a paragraph if it contains $min_word_count or less words
+function remove_unfinished_sentence($paragraph, $min_word_count = 3, $replace = '.') {
+	$min_word_count = $min_word_count > 1 ? $min_word_count : 1;
+	return preg_replace('#(.s*([^s.]+s+){0,'.($min_word_count-1).'}([^s.]+s*))$#ms', $replace, $paragraph);
+}
+</pre>
+
+Of course, if you want to completely remove the last sentence, this will suffice:
+
+<pre class="lang:php " >
+// Remove the last sentence in a paragraph
+function remove_last_sentence($paragraph, $replace = '.') {
+	return preg_replace('#.s*[^.]+$#ms', $replace, $paragraph);
+}
+// Output: This is some stuff.
+remove_last_sentence('This is some stuff. Blah Blah ');
+</pre>

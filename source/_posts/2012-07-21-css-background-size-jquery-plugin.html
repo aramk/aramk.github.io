@@ -1,0 +1,32 @@
+---
+layout: post
+title: CSS Background Size jQuery Plugin
+tags:
+- JavaScript
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '1037770108'
+---
+<a href="https://github.com/aramkocharyan/CSS-Background-Size-jQuery-Plugin">View on Github</a>
+
+Replicates the functionality of CSS3 background-size for "contain" and "cover" keywords not supported by browsers below IE9.
+<h2>How to</h2>
+Add an image inside a div. Set the height and width of the div and set 'cover' or 'contain' to replicate the CSS3 background-size property in browsers that don't support it.
+<pre class="lang:js decode:true">&lt;div style="width: 400px; height: 300px;"&gt;
+    &lt;img class="background-size-cover" src="apple.jpg" /&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+$(document).ready(function() {
+    $('.background-size-cover').bgdSize('cover');
+});
+&lt;/script&gt;</pre>
+<h2>Methods</h2>
+These are valid:
+<pre class="lang:js decode:true crayon-selected">$('.background-size-cover').bgdSize('cover');
+$('.background-size-cover').bgdSize('contain');
+$('.background-size-cover').bgdSize({mode : 'contain'});</pre>
+&nbsp;

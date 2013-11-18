@@ -1,0 +1,43 @@
+---
+layout: post
+title: Check if string is equal to items in array
+tags:
+- PHP
+status: publish
+type: post
+published: true
+meta:
+  name: ''
+  _edit_last: '1'
+  version: ''
+  desc: ''
+  usage: ''
+  param: ''
+  return: ''
+  dsq_thread_id: '587701747'
+---
+This function will test if any of the strings in an array is equal to a given string. You can specify case sensitivity.
+
+<pre class="" >
+// tests if $needle is equal to any strings in $haystack
+function str_equal_array($needle, $haystack, $case_insensitive = TRUE) {
+	if (!is_string($needle) || !is_array($haystack)) {
+		return FALSE;
+	}
+	if ($case_insensitive) {
+		$needle = strtolower($needle);
+	}
+	foreach ($haystack as $hay) {
+		if (!is_string($hay)) {
+			continue;
+		}
+		if ($case_insensitive) {
+			$hay = strtolower($hay);
+		}
+		if ($needle == $hay) {
+			return TRUE;
+		}
+	}
+	return FALSE;
+}
+</pre>

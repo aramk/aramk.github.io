@@ -1,0 +1,41 @@
+---
+layout: post
+title: Trim a String, or an Array of Strings Recursively
+tags:
+- PHP
+status: publish
+type: post
+published: true
+meta:
+  name: ''
+  _edit_last: '1'
+  version: ''
+  desc: ''
+  usage: ''
+  param: ''
+  return: ''
+  dsq_thread_id: '636834473'
+---
+<pre class="" >
+
+// Usage: trim_r( array(' 123 ', '   abc') );
+
+// Trim a string or an array of strings recursively
+function trim_r($array) {
+    if (is_string($array)) {
+        return trim($array);
+    } else if (!is_array($array)) {
+        return '';
+    }
+    $keys = array_keys($array);
+    for ($i=0; $i<count($keys); $i++) {
+        $key = $keys[$i];
+        if ( is_array($array[$key]) ) {
+            $array[$key] = trim_r($array[$key]);
+        } else if ( is_string($array[$key]) ) {
+            $array[$key] = trim($array[$key]);
+        }
+    }
+    return $array;
+}
+</pre>

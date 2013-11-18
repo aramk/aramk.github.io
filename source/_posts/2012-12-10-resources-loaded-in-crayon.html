@@ -1,0 +1,47 @@
+---
+layout: post
+title: Resources Loaded in Crayon
+tags:
+- Crayon
+status: publish
+type: post
+published: true
+meta:
+  dsq_thread_id: '1040248146'
+  _edit_last: '1'
+---
+I've made Crayon with modularity in mind to allow reuse of any components if needed. Here are the Javascript components:
+<ul>
+	<li>js/util.js</li>
+	<li>js/crayon.js</li>
+	<li>js/jquery.popup.js</li>
+	<li>js/fancybox/jquery.fancybox.init.pack.js</li>
+	<li>js/fancybox/fancybox_init.js</li>
+	<li>util/tag-editor/crayon_te.js</li>
+</ul>
+`util.js` has several JavaScript methods that are shared across the admin settings, tag editor, theme editor (coming soon) and of course the front end which displays the Crayons.
+
+`crayon.js` is the main script which defines the toolbar button events and other settings, like toggling etc.
+
+`jquery.popup.js` is adapted jquery plugin I use to open a code popup. As of the latest beta commit, disabling the popup now removes this resource.
+
+`jquery.fancybox.init.pack.js` is a custom version of Fancybox I modified to allow passing in <a href="http://localsite.com/ak/crayon/initialising-fancybox-with-custom-objects/">my own fancybox instance</a> without disrupting other fancybox plugins that may be running - <a href="http://localsite.com/ak/projects/crayon-syntax-highlighter/#comment-720709080">otherwise errors occur</a>.
+
+`fancybox_init.js` serves only the purpose of kickstarting Fancybox with my custom objects, and I agree this is somewhat wasteful of a single request. Although it'll take less time to transfer than a larger file, I imagine there's a fixed cost in the latency required to make the request. Mostly for the reason of reducing the number of modules needed, I've removed it in the latest beta commit and placed it in util.js.
+
+`crayon_te.js` is the tag editor. This appears in the front end only if you check "Display the Tag Editor in any TinyMCE instances on the frontend (e.g. bbPress)" - which is off since 1.15 on fresh installs. Having "Attempt to load Crayon's CSS and JavaScript only when needed" still needs TinyMCE to be disabled on the front end as <a href="http://localsite.com/ak/php/loading-css-and-javascript-only-when-required-in-a-wordpress-plugin/">I've now mentioned here</a>.
+
+For CSS:
+<ul>
+	<li>css/crayon_style.css</li>
+	<li>css/global_style.css</li>
+	<li>js/fancybox/jquery.fancybox.css</li>
+	<li>themes/classic/classic.css</li>
+	<li>fonts/monaco.css</li>
+</ul>
+`crayon_style.css` is a the foundation style.
+`global_style.css` are styles shared across the admin and front end (such as the tag editor, which can appear anywhere TinyMCE appears).
+`jquery.fancybox.css` is once again for Fancybox and only loads if the Tag Editor is enabled on the front end.
+`classic.css` is the classic theme. `monaco.css` is the default font. Since there can be any combination of the last two, mixing them is not practical.
+
+By far the best technique to reduce the number of requests is to use <a href="http://wordpress.org/extend/plugins/w3-total-cache/" target="_blank">WP Total Cache</a>, which I have ensured Crayon is compatible with since 1.16. This will reduce the JS and CSS to a single file for the entire site. This allows the developer (me) to create modular and reusable components while allowing the client (you) and end users to experience better efficiency. Hope that helps!

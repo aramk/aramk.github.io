@@ -1,0 +1,98 @@
+---
+layout: post
+title: Adding CSS Rules With !important Using jQuery
+tags:
+- JavaScript
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '1037731552'
+---
+If you have a CSS with an !important rule and you want to specify an inline rule to override this, you can set the style attribute like this: <code>.attr('style', 'width:200px !important;')</code> but I've found a better way and added a new jQuery function for it.
+
+<code>jQuery.style(name, value, priority);</code>
+
+You can use it to get values with .style('name') just like .css('name'), get the CSSStyleDeclaration with .style(), and also set values - with the ability to specify the priority as 'important'. See <a href="https://developer.mozilla.org/en/DOM/CSSStyleDeclaration">https://developer.mozilla.org/en/DOM/CSSStyleDeclaration</a>.
+
+Here's a demo:
+
+<pre class="lang:js " >
+var div = $('someDiv');
+console.log(div.style('color'));
+div.style('color', 'red');
+console.log(div.style('color'));
+div.style('color', 'blue', 'important');
+console.log(div.style('color'));
+console.log(div.style().getPropertyPriority('color'));
+</pre>
+
+Here's the output:
+
+<pre class="crayon-plain-tag">null
+red
+blue
+important</pre>
+
+
+Here's my function:
+
+<pre class="lang:js " >
+// For those who need them (< IE 9), add support for CSS functions
+var isStyleFuncSupported = CSSStyleDeclaration.prototype.getPropertyValue != null;
+if (!isStyleFuncSupported) {
+	CSSStyleDeclaration.prototype.getPropertyValue = function(a) {
+        return this.getAttribute(a);
+    };
+    CSSStyleDeclaration.prototype.setProperty = function(styleName, value, priority) {
+        this.setAttribute(styleName,value);
+        var priority = typeof priority != 'undefined' ? priority : '';
+        if (priority != '') {
+	        // Add priority manually
+			var rule = new RegExp(RegExp.escape(styleName) + '\s*:\s*' + RegExp.escape(value) + '(\s*;)?', 'gmi');
+			this.cssText = this.cssText.replace(rule, styleName + ': ' + value + ' !' + priority + ';');
+        } 
+    }
+    CSSStyleDeclaration.prototype.removeProperty = function(a) {
+        return this.removeAttribute(a);
+    }
+    CSSStyleDeclaration.prototype.getPropertyPriority = function(styleName) {
+    	var rule = new RegExp(RegExp.escape(styleName) + '\s*:\s*[^\s]*\s*!important(\s*;)?', 'gmi');
+        return rule.test(this.cssText) ? 'important' : '';
+    }
+}
+
+// Escape regex chars with 
+RegExp.escape = function(text) {
+    return text.replace(/[-[]{}()*+?.,\^$|#s]/g, "\$&");
+}
+
+// The style function
+jQuery.fn.style = function(styleName, value, priority) {
+	// DOM node
+	var node = this.get(0);
+	// Ensure we have a DOM node 
+	if (typeof node == 'undefined') {
+		return;
+	}
+	// CSSStyleDeclaration
+	var style = this.get(0).style;
+	// Getter/Setter
+	if (typeof styleName != 'undefined') {
+		if (typeof value != 'undefined') {
+			// Set style property
+			var priority = typeof priority != 'undefined' ? priority : '';
+			style.setProperty(styleName, value, priority);
+		} else {
+			// Get style property
+			return style.getPropertyValue(styleName);
+		}
+	} else {
+		// Get CSSStyleDeclaration
+		return style;
+	}
+}
+</pre>
+
+See <a href="https://developer.mozilla.org/en/DOM/CSSStyleDeclaration">https://developer.mozilla.org/en/DOM/CSSStyleDeclaration</a> for examples of how to read and set the CSS values. My issue was that I had already set !important for the width in my CSS to avoid conflicts with other theme CSS, but any changes I made to the width in jQuery would be unaffected since they would be added to the style attribute.

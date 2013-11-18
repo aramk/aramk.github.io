@@ -1,0 +1,24 @@
+---
+layout: post
+title: Testing Wordpress In Windows From A Mac
+tags:
+- WordPress
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '605603948'
+---
+I work on a Mac but I need to be able to test my sites on a Windows computer, namely because I need to make sure the 40% or so people who are using IE won't have the site break on their crappy browser. Since I work on localhost (my local machine), I could upload my site to a remote server and test it on another computer running Windows. This is slow, and I want to test it on the same machine so that changes appear instantly. The solution:
+
+<ol>
+	<li>Install Windows in a virtual machine on your Mac (<a href="http://www.parallels.com/products/desktop/" target="_blank">Parallels</a>, <a href="http://www.vmware.com/products/fusion/overview.html" target="_blank">VMWare Fusion</a> or the brilliant, free, fast and multi-OS <a href="http://virtualbox.com/" target="_blank">VirtualBox</a>)</li>
+	<li>Export your Wordpress database from phpMySQL. Make a backup of the `.sql` file.</li>
+	<li>Open your text editor (BBEdit, Textmate, Espresso, TextEdit (pre-installed)) and replace all occurrences of your localhost URL with your local IP address. For example, `http://localhost/mysite` becomes `http://192.168.0.2/mysite`. Notice the lack of a trailing forward-slash!</li>
+	<li>Drop/Delete all tables in your database in phpMySQL and upload the modified `.sql` file.</li>
+	<li>Now in your Virtual Machine on Windows, enable a shared network with the host (your Mac)</li>
+	<li>Access `http://192.168.0.2/mysite` on your Mac and in the Windows Virtual Machine</li>
+</ol>
+
+Any changes you make are reflected in the Windows Virtual Machine immediately since it accesses the same files. Make sure to change your router settings to ensure that your local IP address is static.

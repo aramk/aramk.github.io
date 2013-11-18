@@ -1,0 +1,41 @@
+---
+layout: post
+title: preg_match_all for JavaScript
+tags:
+- JavaScript
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '1038074002'
+---
+<pre class="lang:js " >
+
+// Add to RegExp prototype
+RegExp.prototype.execAll = function(string) {
+	var matches = [];
+	var match = null;
+	while ( (match = this.exec(string)) != null ) {
+		var matchArray = [];
+		for (var i in match) {
+			if (parseInt(i) == i) {
+				matchArray.push(match[i]);
+			}
+		}
+		matches.push(matchArray);
+	}
+	return matches;
+}
+
+// Example
+var someTxt = 'abc123 def456 ghi890';
+var results = /[a-z]+(d+)/g.execAll(someTxt);
+console.log(results);
+
+// Output
+[["abc123", "123"],
+ ["def456", "456"],
+ ["ghi890", "890"]]
+
+</pre>

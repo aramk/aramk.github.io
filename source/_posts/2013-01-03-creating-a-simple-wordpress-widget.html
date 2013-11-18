@@ -1,0 +1,18 @@
+---
+layout: post
+title: Creating a Simple Wordpress Widget
+tags:
+- PHP
+- WordPress
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '1038473152'
+---
+Here's a Wordpress widget base class which reduces the amount of code needed to create a simple widget with fields. Allows overriding a method adding more complex fields. This code should be placed in your theme's function.php file. You can then subclass Field_Widget whenever you like by following the example given.
+
+Thanks to <a href="http://frobert.com/en/2010/12/10/wordpress-widget-tutorial/">http://frobert.com/en/2010/12/10/wordpress-widget-tutorial/</a> for sharing tips on how to use WP_Widget.
+<pre class="lang:php decode:true" data-url="https://gist.github.com/raw/4440762/f37cacc2bf1f675717f5a6481938a9b5dd862131/field_widget.php"></pre>
+&nbsp;

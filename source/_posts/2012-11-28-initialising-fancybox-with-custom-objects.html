@@ -1,0 +1,52 @@
+---
+layout: post
+title: Using different versions of Fancybox on the same page
+tags:
+- Crayon
+- JavaScript
+status: publish
+type: post
+published: true
+meta:
+  dsq_thread_id: '1037810646'
+  _edit_last: '1'
+---
+I ran into the issue where some users had an older version of Fancybox on their sites and needed to provide my own version to work with <a href="http://wordpress.org/extend/plugins/crayon-syntax-highlighter/" target="_blank">Crayon</a>. So I put together <a href="https://github.com/aramkocharyan/fancyBox/blob/master/source/jquery.fancybox.init.pack.js" target="_blank">a modification of the original script</a> which allows you to initialise Fancybox when you need it and with different objects to what it's usually provided.
+
+By default, Fancybox will apply these once the script is loaded: <code>(window, document, jQuery)</code>
+
+And it will initialise <code>jQuery.fancybox</code>. If I want to have my own version running independently, I'd need to provide it with a jQuery instance and a custom attribute name, say "crayonFancybox" so I can use my version without accidentally using the old Fancybox on some users' Wordpress installs.
+<pre class="lang:js decode:true">window.fancyboxInit = function (window, document, $, fancybox, undefined) {
+// Original Fancybox script content goes here
+};</pre>
+Now if you include jQuery and two different Fancybox scripts in the same page, they won't clash:
+<pre class="lang:xhtml mark:12,13 decode:true">&lt;script type='text/javascript' src='http://code.jquery.com/jquery.min.js'&gt;&lt;/script&gt;
+&lt;script type='text/javascript' src='http://yandex.st/jquery/fancybox/1.3.4/jquery.fancybox.min.js'&gt;&lt;/script&gt;
+&lt;script src="https://raw.github.com/aramkocharyan/fancyBox/master/source/jquery.fancybox.init.pack.js" type="text/javascript"&gt;&lt;/script&gt;
+
+&lt;script type="text/javascript"&gt;
+
+var jQueryCrayon = jQuery;
+fancyboxInit(window, document, jQueryCrayon, 'crayonFancybox');
+
+(function($) {
+	$(document).ready(function() {
+		console.log("old", $.fancybox); // Old version
+		console.log("new", $.crayonFancybox); // My new version
+	});
+})(jQueryCrayon);
+
+&lt;/script&gt;
+
+&lt;body&gt;
+
+See the JS console!
+
+&lt;/body&gt;</pre>
+The only downside is that you must use <code>$(elem).crayonFancybox</code> instead of <code>$(elem).fancybox</code> in your scripts.
+
+See a <a href="http://jsfiddle.net/ZmmCp/" target="_blank">demo</a>, and <a href="https://github.com/aramkocharyan/fancyBox/blob/master/source/jquery.fancybox.init.pack.js" target="_blank">download the script</a>.
+
+&nbsp;
+
+&nbsp;

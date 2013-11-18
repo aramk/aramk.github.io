@@ -1,0 +1,27 @@
+---
+layout: post
+title: Word Limiting With Regular Expressions
+tags:
+- PHP
+- Random
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '616557288'
+---
+Here's my take on limiting words in a paragraph.
+
+<code>^s*((?:S+s*){0,20})(.*)</code>
+
+That'll capture the first 20 words and also the rest of the string. Then, you can replace the entire capture with the first capture group (the first 20 words). In PHP:
+
+<pre class="lang:php " >
+function ak_limit_words($str, $word_limit) {
+	return preg_replace('#^s*((?:S+s*){0,'.$word_limit.'})(.*)#msi', '$1', $str);
+}
+
+// Output: 'this is the '
+ak_limit_words('this is the sentence...', 3);
+</pre>

@@ -1,0 +1,29 @@
+---
+layout: post
+title: Create Unique ID From String
+tags:
+- PHP
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '567997862'
+---
+This method basically goes through a string, gets the ASCII value of the character, multiplies it with the fraction of the character index divided by the overall length, and adds it to a total. It then appends the HEX value of the length of the string to the HEX value of this total.
+
+<pre class="lang:php " >
+// Example
+str_uid('http://www.google.com.au/'); //191a78c
+str_uid('http://www.google.com/'); //16177fa
+str_uid('hey there!'); //a9998
+str_uid(''); //00
+
+function str_uid($str) {
+	$uid = 0;
+	for ($i = 1; $i < strlen($str); $i++) {
+		$uid += round(ord($str[$i]) * ($i / strlen($str)), 2) * 100;
+	}
+	return strval(dechex(strlen($str))).strval(dechex($uid));
+}
+</pre>

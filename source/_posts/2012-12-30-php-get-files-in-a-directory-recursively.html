@@ -1,0 +1,59 @@
+---
+layout: post
+title: 'PHP: Get Files in a Directory Recursively'
+tags:
+- PHP
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '1040622927'
+---
+This is a method that will return an array of file paths from a directory. It's contained within <a href="https://github.com/aramkocharyan/crayon-syntax-highlighter/blob/master/util/crayon_util.class.php" target="_blank">CrayonUtil</a> and calls other utility methods in that class, but can be ripped out if needed.
+<pre class="lang:php decode:true">/**
+ * @param $path A directory
+ * @param array $args Argument array:
+ *      hidden: If true, hidden files beginning with a dot will be included
+ *      ignoreRef: If true, . and .. are ignored
+ *      recursive: If true, this function is recursive
+ *      ignore: An array of paths to ignore
+ * @return array Files in the directory
+ */
+public static function getFiles($path, $args = array()) {
+    $hidden = self::set_default($args['hidden'], TRUE);
+    $ignoreRef = self::set_default($args['ignoreRef'], TRUE);
+    $recursive = self::set_default($args['recursive'], FALSE);
+    $ignore = self::set_default($args['ignore'], NULL);
+
+    $ignore_map = array();
+    if ($ignore) {
+        foreach ($ignore as $i) {
+            if (is_dir($i)) {
+                $i = CrayonUtil::path_slash($i);
+            }
+            $ignore_map[$i] = TRUE;
+        }
+    }
+
+    $files = glob($path . '*', GLOB_MARK);
+    if ($hidden) {
+        $files = array_merge($files, glob($path . '.*', GLOB_MARK));
+    }
+    if ($ignoreRef || $ignore) {
+        $result = array();
+        for ($i = 0; $i &lt; count($files); $i++) {
+            $file = $files[$i];
+            if (!isset($ignore_map[$file]) &amp;&amp; (!$ignoreRef || (basename($file) != '.' &amp;&amp; basename($file) != '..'))) {
+                $result[] = $file;
+                if ($recursive &amp;&amp; is_dir($file)) {
+                    $result = array_merge($result, self::getFiles($file, $args));
+                }
+            }
+        }
+    } else {
+        $result = $files;
+    }
+    return $result;
+}</pre>
+&nbsp;

@@ -1,0 +1,55 @@
+---
+layout: post
+title: How To Make A Multi-Platform Executable Java Jar File
+tags:
+- Projects
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '1038305656'
+---
+This will show you how to package all your java class files into a single executable jar file and how to make it runnable when you double click it. In our project we might need to load external resources like images from subfolders and other .jar libraries like <strong>slick.jar</strong> and <strong>lwjgl.jar</strong>. I used the eclipse IDE to develop my project.
+
+1. Once you've got it working in eclipse, right click the root folder of your project in the Package Explorer and choose Export, then Java > Runnable JAR file.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2010/12/1.png"><img src="http://localsite.com/ak/wp-content/uploads/2010/12/1.png" alt="" title="" width="651" height="630" class="aligncenter size-full wp-image-227" /></a>
+
+2. Choose the option that says "extract required libraries into generated JAR", choose a directory to export and click finish, accept the warning message if you get any. I'll be using the name <strong>jarFile.jar</strong> in this example.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2010/12/2.png"><img src="http://localsite.com/ak/wp-content/uploads/2010/12/2.png" alt="" title="" width="651" height="630" class="aligncenter size-full wp-image-228" /></a>
+
+3. Now we need to make sure than any other subfolders folders in your project, like /images or /sounds or anything else you had are included. Copy all of these subfolders into the same folder as the .jar file you made. Ensure that all the external libraries files (.dll and .so, etc) that you need are also included. Just as you copied the subfolders, copy all these library files into the same directory as the .jar file.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2010/12/3.png"><img src="http://localsite.com/ak/wp-content/uploads/2010/12/3.png" alt="" title="" class="aligncenter size-full wp-image-229" /></a>
+
+4. Double click your .jar file now, it should be runnable as long as it can find all the files it needs to run. Run it in the command line to see if there are any errors:
+
+<p class="centered bold code">java -jar jarFile.jar</p>
+
+<h2>Making A Runnable EXE File</h2>
+
+5. If you want to make an exe file for Windows to run your .jar, you can use a handy free tool called <a href="http://www.sureshotsoftware.com/exej/" target="_blank">exej</a>. Note that if you have the <a href="http://www.java.com/en/download/" target="_blank">Java Runtime</a> installed in Windows, you can just double click a .jar to run it, however if you want to add extra runtime arguments like changing the classpath or changing the size of the memory heap available for your program, exej makes that possible.
+
+6. <a href="http://localsite.com/ak/files/exej.zip">Download exej</a> and extract the files in the zip to another folder than the jar file.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2010/12/6.png"><img src="http://localsite.com/ak/wp-content/uploads/2010/12/6.png" alt="" title="" width="813" height="612" class="aligncenter size-full wp-image-231" /></a>
+
+7. Inside the folder with <strong>exej.exe</strong>, there will be a text file called <strong>config.txt</strong>. Edit the file and change the command line arguments that you want, make sure that you have "<strong>-jar jarFile.jar</strong>" at the end so that the exe knows what jar file to execute with the arguments. In this example, I increase the maximum heap size to 128MB. You can add any of the regular java arguments as you would in the command line.
+
+<p class="centered bold code">commandline= -Xms32m -Xmx128m -jar jarFile.jar</p>
+
+Also make sure that you rename <strong>jarFile.jar</strong> to your .jar filename.
+
+8. Now run <strong>make.bat</strong>, which is also in the exej folder, to make your exe files with config.txt. It will make two, one that runs java (with command line window) and javaw (without command line window).
+
+<a href="http://localsite.com/ak/wp-content/uploads/2010/12/8.png"><img src="http://localsite.com/ak/wp-content/uploads/2010/12/8.png" alt="" title="" width="806" height="607" class="aligncenter size-full wp-image-232" /></a>
+
+9. Finally, all is done, copy these exe files into the same folder you put your .jar file, the subdirectories, and all the other .dll and .so library files you had. Run either of the exe files to test your program. You can, as usual, just run the .jar file by double clicking it, but this won't have the arguments we made with exej, you'll need to run it through the command line as usual with something like:
+
+<p class="centered bold code">java -Xms32m -Xmx128m -jar jarFile.jar</p>
+
+<a href="http://localsite.com/ak/wp-content/uploads/2010/12/9.png"><img src="http://localsite.com/ak/wp-content/uploads/2010/12/9.png" alt="" title="" width="807" height="607" class="aligncenter size-full wp-image-233" /></a>
+
+Anyway, if you've got any problems, leave a comment below.

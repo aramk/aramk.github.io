@@ -1,0 +1,32 @@
+---
+layout: post
+title: 'JavaScript: Generating a Readable Foreground Colour on any Background Colour'
+tags:
+- JavaScript
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '996164868'
+---
+This issue had been rolling around in my mind in the past but I never had to implement something like it before.
+
+I had a text box where I set the background colour based on a colour picker but that meant that the text value would remain black - which wouldn't be visible if the selected colour was also black, or even dark.
+<div style="text-align: center;"><a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-28-at-3.40.07-PM.png"><img class="size-full wp-image-1104" title="Screen Shot 2012-12-28 at 3.40.07 PM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-28-at-3.40.07-PM.png" alt="" width="163" height="30" /></a><a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-28-at-3.39.55-PM.png"><img class="size-full wp-image-1105" title="Screen Shot 2012-12-28 at 3.39.55 PM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-28-at-3.39.55-PM.png" alt="" width="167" height="30" /></a></div>
+My solution was to pick a colour that differed as much as possible from black - white - and apply this methodology with all colours. If our background was white, then I would use black as the foreground. For colours in between I used a threshold - as soon as the background colour passed it (as it became darker), I would change the foreground from black to white (making it lighter).
+
+I believe the best foreground should be either white or black, since it should differ from the background as much as possible - so linear interpolation between black and white wouldn't help here.
+
+My method was to calculate a distance from white, which is the origin at (0,0). The x-axis is <strong>saturation</strong> and the y-axis is <strong>(1 - value)</strong> in the <a href="http://en.wikipedia.org/wiki/HSL_and_HSV" target="_blank">HSV model</a>. Using a threshold amount of 0.5, I created a radius around white where my foreground is black. Any position outside this radius means my foreground is white. By using multipliers I was able to create an ellipse shape to my liking.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/1.png"><img class="aligncenter size-full wp-image-1097" title="1" src="http://localsite.com/ak/wp-content/uploads/2012/12/1.png" alt="" width="256" height="256" /></a>
+
+I ran into another issue - for colours that appear light - yellow, green, light blue - I needed to allow more black. So I stretched the radius in the x-axis for these colours.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/2.png"><img class="aligncenter size-full wp-image-1098" title="2" src="http://localsite.com/ak/wp-content/uploads/2012/12/2.png" alt="" width="256" height="256" /></a>
+
+This methodology is generic enough to be applied anywhere this problem comes up, but for my implementation I used <a href="http://jquery.com/" target="_blank">jQuery</a> and <a href="http://bgrins.github.com/TinyColor/" target="_blank">TinyColor</a>.
+
+See an <strong>online demo</strong> here: <a href="http://aramkocharyan.github.com/readable-color/index.html" target="_blank">http://aramkocharyan.github.com/readable-color/index.html</a>
+Grab the <strong>source</strong>: <a href="https://github.com/aramkocharyan/readable-color/" target="_blank">https://github.com/aramkocharyan/readable-color/</a>

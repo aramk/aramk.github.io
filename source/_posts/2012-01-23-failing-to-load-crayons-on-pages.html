@@ -1,0 +1,21 @@
+---
+layout: post
+title: Failing To Load Crayons On Pages
+tags:
+- Crayon
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '1040727429'
+---
+Some themes use a page template containing a custom <a href="http://codex.wordpress.org/The_Loop">loop</a>. The issue is:
+
+<blockquote>Since your theme uses a page to load a totally different query from the page it visits there’s no way for Crayon to know what you’re going to request until it reads your has_posts() request. By that time, the header is already written so there’s no chance to enqueue themes and fonts that you’ve used in your Crayons. Fortunately I’ve added a feature so that they are embedded each time if needed. This is a bit more inefficient I think, but it works by adding the required css right before each Crayon. This issue won’t occur on any other page on the site because direct links to pages and posts containing Crayons will load just fine with enqueuing, which is why the other pages worked for you.</blockquote>
+
+The solution is added in 1.7.17 and 1.7.19. 1.7.17 now uses the <code>the_posts</code> filter by default (again) rather than the <code>wp</code> action which checks just the main wp query. The setting that fixes the issue is this:
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/01/Screen-Shot-2012-01-23-at-7.17.07-PM.png"><img src="http://localsite.com/ak/wp-content/uploads/2012/01/Screen-Shot-2012-01-23-at-7.17.07-PM.png" alt="" title="" width="708" height="158" class="aligncenter size-full wp-image-775" /></a>
+
+It basically turns off enqueuing and prints the css in front of Crayon's whenever it encounters a page. Posts will continue to enqueue themes in the <code>head</code> as usual.

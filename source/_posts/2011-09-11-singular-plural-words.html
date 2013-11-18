@@ -1,0 +1,36 @@
+---
+layout: post
+title: Singular and Plural Numbered Words
+tags:
+- PHP
+status: publish
+type: post
+published: true
+meta:
+  version: ''
+  desc: ''
+  name: ''
+  _edit_last: '1'
+  usage: ''
+  param: ''
+  return: ''
+  _wp_old_slug: '516'
+  dsq_thread_id: '585611940'
+---
+Use this to get something like: "5 bananas", "1 turtle".
+
+E.g. spnum(5, 'banana');
+
+<pre class="" >
+// Support for singular and plural string variations
+function spnum($int, $singular, $plural = NULL) {
+	if (!is_int($int) || !is_string($singular)) {
+		$int = intval($int);
+		$singular = strval($singular);
+	}
+	if ($plural == NULL || !is_string($plural)) {
+		$plural = $singular . 's';
+	}
+	return $int . ' ' . (($int == 1) ? $singular : $plural);
+}
+</pre>

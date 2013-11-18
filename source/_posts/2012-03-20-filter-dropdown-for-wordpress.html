@@ -1,0 +1,117 @@
+---
+layout: post
+title: Filter Posts With A Dropdown In Wordpress
+tags:
+- PHP
+- WordPress
+status: publish
+type: post
+published: true
+meta:
+  dsq_thread_id: '1038431994'
+  _edit_last: '1'
+---
+I made an unusually long answer on StackOverflow, thought I'd share here also. I don't now about you but Crayon looks prettier to me :)
+
+Almost 1000 views and not a single comment. Well, I also needed this and decided to make it. I've shared the JavaScript and Wordpress code below for people in the distant future to use. It looks like a lot, but that's because I've defined some jQuery functions you can use later with <code>.extend</code>. All it's doing is looking for a <code>select</code> element (a dropdown) with CSS class <code>.content-filter</code>.
+
+Once found, it uses the dropdown's id to set a GET variable to the value currently selected, then it redirects to this the same URL and adds these GET variables. For example, if the id of the dropdown was <code>product_filter</code>, and this had a value set to <code>date</code>, then it would set the GET variable <code>product_filter=date</code>. It's great because it doesn't care about your Wordpess details - all it cares about is the <code>select</code> element.
+
+<pre class="lang:js " >
+// A bunch of helper methods for reading GET variables etc from the URL
+jQuery.extend({
+	urlGetVars : function() {
+	    var GET = {};
+	    var tempGET = location.search;
+	    tempGET = tempGET.replace('?', '').split('&');
+	    for(var i in tempGET) {
+	    	var someVar = tempGET[i].split('=');
+	    	if (someVar.length == 2) {
+	        	GET[someVar[0]] = someVar[1];
+	        }
+	    }
+	    return GET;
+	},
+	urlGetVar : function(name) {
+	    return $.urlGetVars()[name];
+	},
+	serializeUrlVars : function(obj) {
+		var str = [];
+		for(var p in obj)
+		 str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+		return str.join("&");
+	},
+	currentUrl : function() {
+	    return window.location.href.slice(0,window.location.href.indexOf('?'));
+	}
+});
+
+// Adds functionality to filter content using a dropdown
+var ContentFilter = function ($) {
+	$(document).ready(function() {
+		// Return to a scroll position if exists
+		var scroll = $.urlGetVar('scroll');
+		if (typeof scroll != 'undefined') {
+			$(window).scrollTop(scroll);
+		}
+		// Prepare the filter dropdowns
+		$('.content-filter').each(function(){
+			var me = $(this);
+			// e.g. content-filter-product
+			var id = me.attr('id');
+			// Refresh with selected filter on change
+			var refresh = function() {
+				var GET = $.urlGetVars();
+				GET[id] = me.val();
+				// Save scroll position, return to this position on load
+				GET['scroll'] = $(window).scrollTop();
+				var newVar = $.currentUrl() + '?' + $.serializeUrlVars(GET);
+				window.location = newVar;
+			};
+			me.change(refresh);
+		});
+	});
+}(jQuery);
+</pre>
+
+Now the Wordpress code. All we really need is to generate the <code>select</code> with some kind of id and set the class to <code>.content-filter</code>. This code asks for a post type like 'post' or 'product' and makes the select element. It then returns the GET variable for convenience, and if none is set then it defaults to 'newest'. Notice that the <code>$fields</code> array sets all the different <a href="http://codex.wordpress.org/Class_Reference/WP_Query#Order_.26_Orderby_Parameters" target="_blank">orderby values</a> you'd like to support. You can always access it anywhere in the template with <code>$_GET['product_filter']</code> or <code>$_GET['post_filter']</code> depending on what your type is. This means that only one can exist on any given page, but you want that - otherwise jQuery won't know which to use. You can extend this code to set a custom id or anything you like later.
+
+<pre class="lang:php " >
+function ak_content_filter($post_type_id = 'post', &$filter_get_value, $echo = TRUE) {
+	$dropdown = '<div class="content-filter-wrapper">';
+	// The dropdown filter id for this post type
+	$filter_id = $post_type_id.'_filter';
+	// The actual dropdown
+	$dropdown .= '<label for="'. $filter_id .'">Filter</label><select id="'. $filter_id .'" class="content-filter" name="'. $filter_id .'">';
+	// The available ways of filtering, to sort you'd need to set that in the WP_Query later
+	$fields = array('date' => 'Newest', 'comment_count' => 'Most Popular', 'rand' => 'Random');
+	$filter_get_value = isset($_GET[$filter_id]) ? $_GET[$filter_id] : 'newest'; // default is 'newest'
+	foreach ($fields as $field_value=>$field_name) {
+		$dropdown .= '<option value="'. $field_value .'" '. selected($field_value, $filter_get_value, FALSE) .'>'. $field_name .'</option>';
+	}
+	$dropdown .= '</select></div>';
+	// Print or return
+	if ($echo) {
+		echo $dropdown;
+	} else {
+		return $dropdown;
+	}
+}
+</pre>
+
+Now the fun part - putting it together in the content page. All our work pays off with some sweet and short code:
+
+<pre class="lang:php " >
+// This will fill $product_filter with $_GET['product_filter'] or 'newest' if it doesn't exist
+ak_content_filter('product', $product_filter);
+$args = array('post_type' => 'product', 'orderby' => $product_filter);
+// This is just an example, you can use get_pages or whatever supports orderby
+$loop = new WP_Query( $args );
+
+// OR, to avoid printing:
+$dropdown = ak_content_filter('product', $product_filter, FALSE);
+// ... some code ...
+echo $dropdown;
+</pre>
+
+I used the custom post type 'product', but if you're using 'post' just replace that. Someone should probably make this into a plugin if they haven't already :P

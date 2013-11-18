@@ -1,0 +1,106 @@
+---
+layout: post
+title: 'PHP: Sending an Email Attachment'
+tags:
+- PHP
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '1038919246'
+---
+Here's my adapted version of sending an email attachment and allowing HTML and plain encodings.
+<pre class="lang:php decode:true  crayon-selected">emailFile(array(
+    'to' =&gt; 'your@email.com',
+    'from' =&gt; 'my@email.com',
+    'subject' =&gt; 'Some Subject',
+    'message' =&gt; '&lt;b&gt;Hello!&lt;/b&gt;',
+    'plain ' =&gt; 'Get a new email client!',
+    'file' =&gt; '/path/to/file'
+));</pre>
+<pre class="lang:php decode:true">/**
+ * Sends an email in html and plain encodings with a file attachment.
+ *
+ * @param array $args Arguments associative array
+ *      'to' (string)
+ *      'from' (string)
+ *      'subject' (optional string)
+ *      'message' (HTML string)
+ *      'plain' (optional plain string)
+ *      'file' (optional file path of the attachment)
+ * @see http://webcheatsheet.com/php/send_email_text_html_attachment.php
+ */
+function emailFile($args) {
+    $to = set_default($args['to']);
+    $from = set_default($args['from']);
+    $subject = set_default($args['subject'], '');
+    $message = set_default($args['message'], '');
+    $plain = set_default($args['plain'], '');
+    $file = set_default($args['file']);
+
+    // MIME
+    $random_hash = md5(date('r', time()));
+    $boundaryMixed = 'PHP-mixed-' . $random_hash;
+    $boundaryAlt = 'PHP-alt-' . $random_hash;
+    $charset = 'UTF-8';
+    $bits = '8bit';
+
+    // Headers
+    $headers = "MIME-Version: 1.0";
+    $headers .= "Reply-To: $to\r\n";
+    if ($from !== NULL) {
+        $headers .= "From: $from\r\n";
+    }
+    $headers .= "Content-Type: multipart/mixed; boundary=$boundaryMixed";
+    if ($file !== NULL) {
+        $info = pathinfo($file);
+        $filename = $info['filename'];
+        $extension = $info['extension'];
+        $contents = @file_get_contents($file);
+        if ($contents === FALSE) {
+            throw new Exception("File contents of '$file' could not be read");
+        }
+        $chunks = chunk_split(base64_encode($contents));
+        $attachment = &lt;&lt;&lt;EOT
+--$boundaryMixed
+Content-Type: application/$extension; name=$filename.$extension
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment
+
+$chunks
+EOT;
+    } else {
+        $attachment = '';
+    }
+
+    $body = &lt;&lt;&lt;EOT
+--$boundaryMixed
+Content-Type: multipart/alternative; boundary=$boundaryAlt
+
+--$boundaryAlt
+Content-Type: text/plain; charset="$charset"
+Content-Transfer-Encoding: $bits
+
+$plain
+
+--$boundaryAlt
+Content-Type: text/html; charset="$charset"
+Content-Transfer-Encoding: $bits
+
+$message
+--$boundaryAlt--
+
+$attachment
+
+--$boundaryMixed--
+EOT;
+
+    $result = @mail($to, $subject, $body, $headers);
+    return $result;
+}
+
+function set_default(&amp;$var, $default = NULL) {
+    return isset($var) ? $var : $default;
+}</pre>
+&nbsp;

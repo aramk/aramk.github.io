@@ -1,0 +1,32 @@
+---
+layout: post
+title: Detect Mac or PC in PHP
+tags:
+- PHP
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '1038104632'
+---
+Use this script to find if the user is on a Mac or a PC. Returns TRUE when on a Mac. $default is optional. If the script can't determine either a Mac or a PC, it will return this.
+
+<pre class="lang:php " >
+<?php
+
+function user_is_mac($default = FALSE) {
+	$user = $_SERVER['HTTP_USER_AGENT'];
+	if (stripos($user, 'macintosh')) {
+		return TRUE;
+	} else if (stripos($user, 'windows') || stripos($user, 'linux')) {
+		return FALSE;
+	} else {
+		return $default===TRUE;
+	}
+}
+
+var_dump(is_mac());
+
+?>
+</pre>

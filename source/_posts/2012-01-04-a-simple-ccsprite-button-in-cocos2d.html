@@ -1,0 +1,51 @@
+---
+layout: post
+title: A Simple CCSprite Button In cocos2d
+tags:
+- cocos2d
+- iOS
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '570070480'
+---
+CCSprite's can implement the <code>&lt;CCTargetedTouchDelegate&gt;</code> protocol and implement the <code>ccTouchBegan:</code>, <code>ccTouchEnded:</code>, <code>ccTouchMoved:</code> and <code>ccTouchCancelled:</code> methods. I've built a class called <code>GTButton</code> that does this and allows you to specify two sprites to toggle between when the touch occurs. By default you must release your finger in the CCSprite to run a selector (a method on a target object), but you can change this with <code>mustRelease</code and <code>mustReleaseInside</code> boolean properties of the <code>GTButton</code> object. Here's the header file and the download link to the sample project. Remember to change the target SDK in the project settings to the latest one on your Xcode install - I used 5.0.
+
+<pre class="lang:objc " >
+#import "cocos2d.h"
+
+typedef enum buttonState {
+	FMButtonSelected, // Finger Down
+	FMButtonUnselected // Finger Up
+} FMButtonState;
+
+@interface GTButton : CCSprite <CCTargetedTouchDelegate> {
+	FMButtonState state;
+	CCSprite *spriteSelected, *spriteUnselected;
+	id target;
+	SEL selector;
+	/*
+	 mustRelease means you must lift your finger anywhere on screen to perform the selector.
+	 mustReleaseInside is subset of mustRelease and means you must lift your finger inside sprite.
+	 */
+	BOOL mustRelease, mustReleaseInside;
+}
+
+@property (assign,readwrite,nonatomic) id target;
+@property (assign,readwrite,nonatomic) SEL selector;
+@property (assign,readwrite,nonatomic) BOOL mustReleaseInside, mustRelease;
+
++(GTButton*) buttonWithUnselectedSprite:(CCSprite*)theSpriteUnselected SelectedSprite:(CCSprite*)theSpriteSelected Target:(id)theTarget Selector:(SEL)theSelector;
+-(id) initWithUnselectedSprite:(CCSprite*)theSpriteUnselected SelectedSprite:(CCSprite*)theSpriteSelected Target:(id)theTarget Selector:(SEL)theSelector;
+-(void) setTextureFromSprite:(CCSprite*)sprite;
+-(void) setSelected:(BOOL)selected;
+-(BOOL) containsTouchLocation:(UITouch *)touch;
+// Rect relative to the anchorPoint
+-(CGRect) relRect;
+
+@end
+</pre>
+
+<a href="http://www.mediafire.com/?ahbopc5c8hhaymd">Download Sample Project</a>

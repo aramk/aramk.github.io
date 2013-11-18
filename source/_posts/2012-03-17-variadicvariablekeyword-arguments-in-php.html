@@ -1,0 +1,47 @@
+---
+layout: post
+title: Variadic/Variable/Keyword Arguments In PHP
+tags:
+- PHP
+status: publish
+type: post
+published: true
+meta:
+  dsq_thread_id: '614275408'
+  _edit_last: '1'
+---
+I miss being able to just pass in named variables in Python. Well, while PHP isn't as elegant at that, I've decided to use this:
+
+<pre class="lang:php " >
+function vargs(&$var, $default) {
+	$var = isset($var) ? $var: $default;
+}
+
+function some_func($args) {
+    extract($args);
+    vargs($first, '');
+    var_dump($first);
+}
+
+some_func(array('first' => '1st', 'second' => '2nd'));
+</pre>
+
+The <code>first</code> string will turn into <code>$first</code> which will then be set to <code>1st</code>. If first is missing, then <code>vargs()</code> will set it to the default you've provided. The main downside in PHP is the array() notation and having to use strings, whereas Python will let you name the variable like so:
+
+<pre class="lang:py " >some_func(first = '1st', second = '2nd')</pre>
+
+Another way in PHP is to set your functions to their default values, then to run <code>extract</code>, which will replace these default values if the variable exists or leave them default otherwise.
+
+<pre class="lang:php " >
+function some_func($args) {
+    $these = '1';
+    $are = '2';
+    $variables = '3';
+    extract($args);
+    // Either '1' or the given argument
+    var_dump($these);
+}
+
+// Prints 'one', not '1'
+some_func(array('these' => 'one'));
+</pre>

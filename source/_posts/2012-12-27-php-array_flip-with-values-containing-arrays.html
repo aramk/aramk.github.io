@@ -1,0 +1,43 @@
+---
+layout: post
+title: 'PHP: array_flip() with Values Containing Arrays'
+tags:
+- PHP
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '994767212'
+---
+I had the following:
+<pre class="lang:php decode:true">$attributeTypes = array(
+    'color' =&gt; array('background', 'border-color'),
+    'size' =&gt; array('border-width')
+);
+$attributeTypesInverse = array_flip($attributeTypes);</pre>
+But I got this warning: Warning: array_flip() [function.array-flip]: Can only flip STRING and INTEGER values!
+
+So I wrote a new function to support arrays as values, not just integers or strings. Keep in mind though that the values of the arrays in values must be integers or strings in order to be valid keys for the resulting array.
+<pre class="lang:php decode:true">function array_flip_r($array) {
+    $result = array();
+    foreach ($array as $k=&gt;$v) {
+        if (is_array($v)) {
+            foreach ($v as $u) {
+                _array_flip_r($result, $k, $u);
+            }
+        } else {
+            _array_flip_r($result, $k, $v);
+        }
+    }
+    return $result;
+}
+
+function _array_flip_r(&amp;$array, $k, $v) {
+    if (is_string($v) || is_int($v)) {
+        $array[$v] = $k;
+    } else {
+        trigger_error("Values must be STRING or INTEGER", E_USER_WARNING);
+    }
+}</pre>
+&nbsp;

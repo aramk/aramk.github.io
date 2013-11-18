@@ -1,0 +1,29 @@
+---
+layout: post
+title: Internal Post Management in Crayon
+tags:
+- Crayon
+status: publish
+type: post
+published: true
+meta:
+  dsq_thread_id: '1038387977'
+  _edit_last: '1'
+---
+Crayon's internal post management determines when the rest of the system should kick in.
+
+When you save/edit a page, Crayon searches through the content and keeps a reference to the post in the database if it contains any Crayon tags. When you save/edit a comment, the same process takes place.
+
+When you load a page, Crayon goes through all the posts requested (for a single page, this is usually just a single post) and only checks those known to contain Crayon posts. For each of these, Crayon captures any tags used and keeps them in internal PHP memory.
+
+When the page or comment content is requested by Wordpress, Crayon steps in, highlights the code in the tags it captured earlier and replaces the original tags in the content.
+
+This means that <strong>only those pages that contain Crayons are ever checked for Crayons</strong>, meaning much more efficient than looking through every single post on the blog for Crayon tags!
+
+In Crayon 1.12, I've added a feature in the settings page to display all the posts that contain Crayon tags. It will also list all the posts which have Crayon tags in their comments, even if the post itself doesn't contain any. This is crucial to ensure Crayon kicks in and highlights the code in those comments.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/09/Screen-Shot-2012-09-26-at-6.40.57-PM.png"><img class="aligncenter size-full wp-image-1022" title="Screen Shot 2012-09-26 at 6.40.57 PM" src="http://localsite.com/ak/wp-content/uploads/2012/09/Screen-Shot-2012-09-26-at-6.40.57-PM.png" alt="" width="307" height="49" /></a>
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/09/Screen-Shot-2012-09-26-at-6.41.03-PM.png"><img class="aligncenter size-full wp-image-1023" title="Screen Shot 2012-09-26 at 6.41.03 PM" src="http://localsite.com/ak/wp-content/uploads/2012/09/Screen-Shot-2012-09-26-at-6.41.03-PM.png" alt="" width="502" height="283" /></a>
+
+As an added safety measure, when you refresh the settings page, Crayon will manually go through all the posts in your site and update the list of those containing Crayons in the database. So if anything funky happens that somehow messes up this list, refreshing the settings page should sort it out.

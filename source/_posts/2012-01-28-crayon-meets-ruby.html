@@ -1,0 +1,80 @@
+---
+layout: post
+title: Crayon Meets Ruby
+tags:
+- Crayon
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '567909923'
+---
+In 1.7.24 I've added Ruby and Ruby on Rails as a language on Crayon. Even cooler, I've added the <code>&lt;% ... %&gt;</code> and similar delimiter tags for <a href="http://en.wikipedia.org/wiki/ERuby">eRuby/RHTML</a>. Using Multiple Language Highlighting in Crayon, you can choose HTML as the base language with the <code>lang="html"</code> attribute or the <code>$[html]...[/html]</code> Mini Tag and then through in some eRuby syntax. The red bits are Ruby, all else is XHTML. Note you can do the same thing with PHP tags, CSS tags and JavaScript tags.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/01/rhtml.png"><img src="http://localsite.com/ak/wp-content/uploads/2012/01/rhtml.png" alt="" title="rhtml" width="594" height="290" class="aligncenter size-full wp-image-787" /></a>
+
+Here's the shortcode I used:
+
+<pre class="crayon-plain-tag">$[html]
+Some <strong>HTML</strong> first.
+
+<ul style="color:red;">
+<% 3.times do %>
+
+  <li>list item</li>
+
+<% end %>
+
+% $s("ewfwe")
+
+</ul>
+
+<%= "print something" %>
+
+Tada.
+[/html]</pre>
+
+Here's some Ruby:
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/01/ruby.png"><img src="http://localsite.com/ak/wp-content/uploads/2012/01/ruby.png" alt="" title="ruby" width="595" height="578" class="aligncenter size-full wp-image-794" /></a>
+
+And the shortcode:
+
+<pre class="crayon-plain-tag">$[rb toolbar="always"]
+def create_set_and_get(initial_value=0) # Note the default value of 0
+  closure_value = initial_value
+  return Proc.new {|x| closure_value = x}, Proc.new { closure_value }
+end
+ 
+setter, getter = create_set_and_get  # ie. returns two values
+setter.call(21)
+getter.call # => 21
+ 
+#You can also use a parameter variable as a binding for the closure. 
+#So the above can be rewritten as...
+ 
+def create_set_and_get(closure_value=0)
+  return proc {|x| closure_value = x } , proc { closure_value }
+end
+
+proc {|arg| print arg}
+Proc.new {|arg| print arg}
+lambda {|arg| print arg}
+ 
+# introduced in Ruby 1.9
+->(arg) {print arg}
+
+# In an object instance variable (denoted with '@'), remember a block.
+def remember(&a_block)
+  @block = a_block
+end
+ 
+# Invoke the above method, giving it a block which takes a name.
+remember {|name| puts "Hello, #{name}!"}
+ 
+# When the time is right (for the object) -- call the closure!
+@block.call("Jon")
+# => "Hello, Jon!"
+
+[/rb]</pre>
