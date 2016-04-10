@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Crayon Theme Editor - Aram Kocharyan</title>
+  <meta name="author" content="Aram Kocharyan">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://aramk.com/blog/2012/12/27/crayon-theme-editor">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Aram Kocharyan" type="application/atom+xml">
+
+  <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+
+  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
+  
+
+</head>
+
+  <body   >
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Aram Kocharyan</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="search navbar-form navbar-right" action="http://google.com/search" method="GET">
+                    <input type="hidden" name="q" value="site:aramk.com">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9">
+    <article class="hentry" role="article">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-12-27T00:00:00+11:00" pubdate data-updated="true">Dec 27<span>th</span>, 2012</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title">
+        Crayon Theme Editor
+        
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix">The Theme Editor allows you to duplicate and modify custom themes compatible with Crayon using an integrated user interface and <em>no CSS knowledge</em> whatsoever. Of course, make changes to your theme by editing the CSS is also possible before and after using the theme editor.
+
+You can access the theme editor in Wordpress admin under <strong>Settings &gt; Crayon</strong>:
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2013-01-02-at-1.44.40-AM.png"><img class="aligncenter size-full wp-image-1138" title="Screen Shot 2013-01-02 at 1.44.40 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2013-01-02-at-1.44.40-AM.png" alt="" width="756" height="236" /></a>
+
+The Theme section displays the information about the current theme, a toolbar for performing theme editor actions and the Live Preview. Modifying any settings automatically refreshes this preview before submitting the settings page.
+<h2>Theme Types</h2>
+Crayon stores the <strong>Stock Themes</strong> which come with the plugin under this path:
+
+<code>wp-content/plugins/crayon-syntax-highlighter/themes</code>
+
+To allow modifying these themes and preserving changes, Crayon stores <strong>User Themes</strong> under this path:
+
+<code>wp-content/uploads/crayon-syntax-highlighter/themes</code>
+
+This avoids any changes being overwritten during updates to the plugin. Stock themes can&#8217;t be deleted or modified for this reason - unless you enable <code>CRAYON_DEBUG</code> in <code>globals.php</code>. Of course, modifying the theme CSS is independent of the Theme Editor, but keep in mind that your changes will be lost when updating the plugin.
+<h2>Creating Themes</h2>
+Start by selecting an existing theme which is the closest appearance you&#8217;re trying to create. To play it safe, start with the Classic theme. Click Duplicate and type in a new name.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-12.54.10-AM.png"><img class="aligncenter size-full wp-image-1110" title="Screen Shot 2012-12-30 at 12.54.10 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-12.54.10-AM.png" alt="" width="280" height="160" /></a>
+
+The theme is duplicated as a User Theme. Now click Edit to load the Theme Editor.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.01.26-AM.png"><img class="aligncenter size-full wp-image-1112" title="Screen Shot 2012-12-30 at 1.01.26 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.01.26-AM.png" alt="" width="785" height="339" /></a>
+
+One handy feature of the editor is that modifications take place live just like in the regular settings page - so changing the language or settings will also change them in the theme editor, allowing you to see how your changes will look like for different settings.
+
+On the right side you&#8217;ll see the editor controls. The first tab allows you to change information about the theme. Saving the theme is possible at any time and doesn&#8217;t require a reload unless you change the name of the theme. You can also look at the CSS with a link below the name.
+
+Next, I might want to change the appearance of the frame and line colours.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.06.39-AM.png"><img class="aligncenter size-full wp-image-1113" title="Screen Shot 2012-12-30 at 1.06.39 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.06.39-AM.png" alt="" width="781" height="288" /></a>
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.07.43-AM.png"><img class="aligncenter size-full wp-image-1114" title="Screen Shot 2012-12-30 at 1.07.43 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.07.43-AM.png" alt="" width="779" height="375" /></a>
+
+Next, I can change the line numbers.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.19.57-AM.png"><img class="aligncenter size-full wp-image-1115" title="Screen Shot 2012-12-30 at 1.19.57 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.19.57-AM.png" alt="" width="777" height="549" /></a>
+
+And then the toolbar.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.55.15-AM.png"><img class="aligncenter size-full wp-image-1116" title="Screen Shot 2012-12-30 at 1.55.15 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.55.15-AM.png" alt="" width="780" height="409" /></a>
+
+Finally, we can take a look at the highlighting! I&#8217;ve left this till last since I wanted to make sure I have the overall look of the new theme first.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-2.03.45-AM.png"><img class="aligncenter size-full wp-image-1118" title="Screen Shot 2012-12-30 at 2.03.45 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-2.03.45-AM.png" alt="" width="778" height="750" /></a>
+
+And there we have it, a new theme! Tinker with the settings until you have the right look. This theme is obviously a 5 minute demonstration and the some of the stock themes that people have put together look amazing comparatively - but the important thing to take away from this post is that creating themes is now super quick and very much integrated into Crayon!
+<h2>Submitting a Theme</h2>
+Remember, if you happen to create a theme you&#8217;re especially proud of, please use the <strong>Submit</strong> button - it will zip up your theme and email it to me and I&#8217;ll include it as a Stock Theme for others to enjoy!
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard">Posted by <span class="fn">Aram Kocharyan</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-12-27T00:00:00+11:00" pubdate data-updated="true">Dec 27<span>th</span>, 2012</time>
+          
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://aramk.com/blog/2012/12/27/crayon-theme-editor/" data-via="" data-counturl="http://aramk.com/blog/2012/12/27/crayon-theme-editor/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2012/12/14/crayon-with-retina-support/" title="Previous Post: Crayon with Retina Support">&laquo; Crayon with Retina Support</a></li>
+            
+            
+            <li class="next"><a href="/blog/2012/12/27/php-array_flip-with-values-containing-arrays/" title="Next Post: PHP: array_flip() with Values Containing Arrays">PHP: array_flip() with Values Containing Arrays &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2013/05/28/jekyll/">Hello Jekyll, Goodbye Wordpress</a>
+    
+    <a class="list-group-item " href="/blog/2013/01/15/minimizing-code-in-crayon/">Minimizing Code in Crayon</a>
+    
+    <a class="list-group-item " href="/blog/2013/01/03/creating-a-simple-wordpress-widget/">Creating a Simple Wordpress Widget</a>
+    
+    <a class="list-group-item " href="/blog/2012/12/30/php-sending-an-email-attachment/">PHP: Sending an Email Attachment</a>
+    
+    <a class="list-group-item " href="/blog/2012/12/30/php-get-files-in-a-directory-recursively/">PHP: Get Files in a Directory Recursively</a>
+    
+  </div>
+</section>
+
+
+
+
+
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2016 - Aram Kocharyan<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr-2.0.js"></script>
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </body>
+</html>

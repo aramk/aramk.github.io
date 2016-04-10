@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Inline Tags, `Backquotes` and Crayons In Comments - Aram Kocharyan</title>
+  <meta name="author" content="Aram Kocharyan">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://aramk.com/blog/2012/03/07/inline-crayons">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Aram Kocharyan" type="application/atom+xml">
+
+  <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+
+  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
+  
+
+</head>
+
+  <body   >
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Aram Kocharyan</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="search navbar-form navbar-right" action="http://google.com/search" method="GET">
+                    <input type="hidden" name="q" value="site:aramk.com">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9">
+    <article class="hentry" role="article">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-03-07T00:00:00+11:00" pubdate data-updated="true">Mar 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title">
+        Inline Tags, `Backquotes` and Crayons in Comments
+        
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix"><strong>UPDATE:</strong> Use the <a href="http://localsite.com/ak/projects/crayon-tag-editor/">Tag Editor</a> for creating inline tags. The approach below is now depreciated.
+
+<hr />
+
+As of Crayon 1.8.3, you can have inline Crayons floating in the middle of sentences for quick snippets. You can use them like you&#8217;d use <code style="font-style: inherit;">code</code> tags.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/03/Screen-Shot-2012-03-07-at-12.18.53-PM.png"><img class="aligncenter size-full wp-image-839" title="" src="http://localsite.com/ak/wp-content/uploads/2012/03/Screen-Shot-2012-03-07-at-12.18.53-PM.png" alt="" width="505" height="25" /></a>
+
+Here&#8217;s the code in the editor:
+<pre class="lang:default highlight:0 decode:true crayon-plain-tag">Here's an example of a floating {php} echo 'Crayon'; {/php} right in the middle of a sentence. Neat!</pre>
+They work like <a title="Mini Tags And Plain Tags In Crayon" href="http://localsite.com/ak/projects/mini-tags-in-crayon/">Mini Tags</a> which use square brackets but instead Inline Tags use curly brackets. You can also use them like <code>[php inline="true"]...[/php]</code> or <code>$[crayon lang="xml" inline="true"]...[/crayon]</code> as well.
+
+Also, I&#8217;ve added a new feature to make `backquotes` into <code>code</code>. Easy!
+
+Oh, and one more thing - you can have Crayons (both normal and inline) in comments :)
+
+You can <a href="http://dl.dropbox.com/u/33811812/Crayon/crayon-syntax-highlighter-1.8.3-beta.zip" target="_blank">download</a> the beta release now.
+
+All these tag settings are now in their own section in Settings &gt; Crayon.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/03/Screen-Shot-2012-03-08-at-12.20.43-AM.png"><img class="aligncenter size-full wp-image-846" title="" src="http://localsite.com/ak/wp-content/uploads/2012/03/Screen-Shot-2012-03-08-at-12.20.43-AM.png" alt="" width="609" height="115" /></a>
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard">Posted by <span class="fn">Aram Kocharyan</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-03-07T00:00:00+11:00" pubdate data-updated="true">Mar 7<span>th</span>, 2012</time>
+          
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://aramk.com/blog/2012/03/07/inline-crayons/" data-via="" data-counturl="http://aramk.com/blog/2012/03/07/inline-crayons/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2012/01/30/ios-app-store-icon-template/" title="Previous Post: iOS App Store Icon Template">&laquo; iOS App Store Icon Template</a></li>
+            
+            
+            <li class="next"><a href="/blog/2012/03/10/testing-wordpress-in-windows-from-a-mac/" title="Next Post: Testing Wordpress In Windows From A Mac">Testing Wordpress In Windows From A Mac &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2013/05/28/jekyll/">Hello Jekyll, Goodbye Wordpress</a>
+    
+    <a class="list-group-item " href="/blog/2013/01/15/minimizing-code-in-crayon/">Minimizing Code in Crayon</a>
+    
+    <a class="list-group-item " href="/blog/2013/01/03/creating-a-simple-wordpress-widget/">Creating a Simple Wordpress Widget</a>
+    
+    <a class="list-group-item " href="/blog/2012/12/30/php-sending-an-email-attachment/">PHP: Sending an Email Attachment</a>
+    
+    <a class="list-group-item " href="/blog/2012/12/30/php-get-files-in-a-directory-recursively/">PHP: Get Files in a Directory Recursively</a>
+    
+  </div>
+</section>
+
+
+
+
+
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2016 - Aram Kocharyan<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr-2.0.js"></script>
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </body>
+</html>
