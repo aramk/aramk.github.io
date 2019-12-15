@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Aram Kocharyan</title>
+  <meta name="author" content="Aram Kocharyan">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="PFro7Lv2_YqOI4JXEYiAolZH1PcFeQ7YcZv_ZaD-ngc" />
+
+  
+  <link rel="canonical" href="http://aramk.com">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Aram Kocharyan" type="application/atom+xml">
+
+  <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+
+  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
+  
+
+</head>
+
+  <body   >
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Aram Kocharyan</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="search navbar-form navbar-right" action="http://google.com/search" method="GET">
+                    <input type="hidden" name="q" value="site:aramk.com">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9">
+    <div class="blog-index">
+      
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-05-28T00:00:00+10:00" pubdate data-updated="true">May 28<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/28/jekyll/">Hello Jekyll, Goodbye Wordpress</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>So my Wordpress site got hacked rather badly recently and 000webhost canceled my free hosting:</p>
+
+<p><img src="/assets/img/2013/05/site-down.png" alt="Site Down" /></p>
+
+<p>Realising the amount of effort I put into writing templates, uploading huge amounts of files and using crappy FTP connections, I looked for a better way to post stuff.</p>
+
+<p>Jekyll is a static website generator written in Ruby, is very light and didn&rsquo;t take nearly as much time to install, even though I had to set up DNS records again.</p>
+
+<ol>
+<li><p>Take a look at the <a href="https://github.com/aramkocharyan/aramkocharyan.github.io/tree/source">source branch</a> of this website.</p></li>
+<li><p>Fork the repo and checkout both the <code>source</code> and <code>master</code> branches.</p></li>
+<li><p>Make some changes to the site in the <code>source</code> branch and push them.</p></li>
+<li><p>Run <a href="https://github.com/aramkocharyan/aramkocharyan.github.io/blob/source/publish.sh">publish.sh</a>, which will build the site in the <code>master</code> branch and push it.</p></li>
+</ol>
+
+
+<p>If you&rsquo;re hosting a <strong>Project Page</strong> instead of a <strong>User Page</strong>, you need to push to a <code>gh-pages</code> branch instead, so edit <code>publish.sh</code> to your needs. See the <a href="https://help.github.com/articles/user-organization-and-project-pages">GitHub Pages guide</a>.</p>
+
+<p>This has some setbacks &ndash; even though I installed the Wordpress importer like so:</p>
+
+<pre><code>sudo gem install jekyll-import --pre
+</code></pre>
+
+<p>And followed their <a href="http://jekyllrb.com/docs/migrations">importing guide</a>, my old posts are more or less broken. But I think cleaning them up will be a more long term solution, and I don&rsquo;t need a PHP server anymore :)</p>
+
+<p>I plan to port <a href="https://github.com/aramkocharyan/crayon-syntax-highlighter">Crayon</a> eventually, but that&rsquo;s another story.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-01-15T00:00:00+11:00" pubdate data-updated="true">Jan 15<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/15/minimizing-code-in-crayon/">Minimizing Code in Crayon</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix">In the latest version of Crayon, you can choose to hide the code until the user expands it. This doesn&#8217;t apply to inline code. You can enable/disable it for individual Crayons using the Tag Editor.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2013/01/Screen-Shot-2013-01-15-at-9.57.16-PM.png"><img class="aligncenter size-full wp-image-1219" title="Screen Shot 2013-01-15 at 9.57.16 PM" alt="" src="http://localsite.com/ak/wp-content/uploads/2013/01/Screen-Shot-2013-01-15-at-9.57.16-PM.png" width="641" height="77" /></a>
+
+If a title is set in the Tag Editor it is used in place of &#8220;Click To Expand Code&#8221;.
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-01-03T00:00:00+11:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/03/creating-a-simple-wordpress-widget/">Creating a Simple Wordpress Widget</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix">Here&#8217;s a Wordpress widget base class which reduces the amount of code needed to create a simple widget with fields. Allows overriding a method adding more complex fields. This code should be placed in your theme&#8217;s function.php file. You can then subclass Field_Widget whenever you like by following the example given.
+
+Thanks to <a href="http://frobert.com/en/2010/12/10/wordpress-widget-tutorial/">http://frobert.com/en/2010/12/10/wordpress-widget-tutorial/</a> for sharing tips on how to use WP_Widget.
+<pre class="lang:php decode:true" data-url="https://gist.github.com/raw/4440762/f37cacc2bf1f675717f5a6481938a9b5dd862131/field_widget.php"></pre>
+&nbsp;
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-12-30T00:00:00+11:00" pubdate data-updated="true">Dec 30<span>th</span>, 2012</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/30/php-sending-an-email-attachment/">PHP: Sending an Email Attachment</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix">Here&#8217;s my adapted version of sending an email attachment and allowing HTML and plain encodings.
+<pre class="lang:php decode:true  crayon-selected">emailFile(array(
+    'to' =&gt; 'your@email.com',
+    'from' =&gt; 'my@email.com',
+    'subject' =&gt; 'Some Subject',
+    'message' =&gt; '&lt;b&gt;Hello!&lt;/b&gt;',
+    'plain ' =&gt; 'Get a new email client!',
+    'file' =&gt; '/path/to/file'
+));</pre>
+<pre class="lang:php decode:true">/**
+ * Sends an email in html and plain encodings with a file attachment.
+ *
+ * @param array $args Arguments associative array
+ *      'to' (string)
+ *      'from' (string)
+ *      'subject' (optional string)
+ *      'message' (HTML string)
+ *      'plain' (optional plain string)
+ *      'file' (optional file path of the attachment)
+ * @see http://webcheatsheet.com/php/send_email_text_html_attachment.php
+ */
+function emailFile($args) {
+    $to = set_default($args['to']);
+    $from = set_default($args['from']);
+    $subject = set_default($args['subject'], '');
+    $message = set_default($args['message'], '');
+    $plain = set_default($args['plain'], '');
+    $file = set_default($args['file']);
+
+    // MIME
+    $random_hash = md5(date('r', time()));
+    $boundaryMixed = 'PHP-mixed-' . $random_hash;
+    $boundaryAlt = 'PHP-alt-' . $random_hash;
+    $charset = 'UTF-8';
+    $bits = '8bit';
+
+    // Headers
+    $headers = "MIME-Version: 1.0";
+    $headers .= "Reply-To: $to\r\n";
+    if ($from !== NULL) {
+        $headers .= "From: $from\r\n";
+    }
+    $headers .= "Content-Type: multipart/mixed; boundary=$boundaryMixed";
+    if ($file !== NULL) {
+        $info = pathinfo($file);
+        $filename = $info['filename'];
+        $extension = $info['extension'];
+        $contents = @file_get_contents($file);
+        if ($contents === FALSE) {
+            throw new Exception("File contents of '$file' could not be read");
+        }
+        $chunks = chunk_split(base64_encode($contents));
+        $attachment = &lt;&lt;&lt;EOT
+--$boundaryMixed
+Content-Type: application/$extension; name=$filename.$extension
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment
+
+$chunks
+EOT;
+    } else {
+        $attachment = '';
+    }
+
+    $body = &lt;&lt;&lt;EOT
+--$boundaryMixed
+Content-Type: multipart/alternative; boundary=$boundaryAlt
+
+--$boundaryAlt
+Content-Type: text/plain; charset="$charset"
+Content-Transfer-Encoding: $bits
+
+$plain
+
+--$boundaryAlt
+Content-Type: text/html; charset="$charset"
+Content-Transfer-Encoding: $bits
+
+$message
+--$boundaryAlt--
+
+$attachment
+
+--$boundaryMixed--
+EOT;
+
+    $result = @mail($to, $subject, $body, $headers);
+    return $result;
+}
+
+function set_default(&amp;$var, $default = NULL) {
+    return isset($var) ? $var : $default;
+}</pre>
+&nbsp;
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-12-30T00:00:00+11:00" pubdate data-updated="true">Dec 30<span>th</span>, 2012</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/30/php-get-files-in-a-directory-recursively/">PHP: Get Files in a Directory Recursively</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix">This is a method that will return an array of file paths from a directory. It&#8217;s contained within <a href="https://github.com/aramkocharyan/crayon-syntax-highlighter/blob/master/util/crayon_util.class.php" target="_blank">CrayonUtil</a> and calls other utility methods in that class, but can be ripped out if needed.
+<pre class="lang:php decode:true">/**
+ * @param $path A directory
+ * @param array $args Argument array:
+ *      hidden: If true, hidden files beginning with a dot will be included
+ *      ignoreRef: If true, . and .. are ignored
+ *      recursive: If true, this function is recursive
+ *      ignore: An array of paths to ignore
+ * @return array Files in the directory
+ */
+public static function getFiles($path, $args = array()) {
+    $hidden = self::set_default($args['hidden'], TRUE);
+    $ignoreRef = self::set_default($args['ignoreRef'], TRUE);
+    $recursive = self::set_default($args['recursive'], FALSE);
+    $ignore = self::set_default($args['ignore'], NULL);
+
+    $ignore_map = array();
+    if ($ignore) {
+        foreach ($ignore as $i) {
+            if (is_dir($i)) {
+                $i = CrayonUtil::path_slash($i);
+            }
+            $ignore_map[$i] = TRUE;
+        }
+    }
+
+    $files = glob($path . '*', GLOB_MARK);
+    if ($hidden) {
+        $files = array_merge($files, glob($path . '.*', GLOB_MARK));
+    }
+    if ($ignoreRef || $ignore) {
+        $result = array();
+        for ($i = 0; $i &lt; count($files); $i++) {
+            $file = $files[$i];
+            if (!isset($ignore_map[$file]) &amp;&amp; (!$ignoreRef || (basename($file) != '.' &amp;&amp; basename($file) != '..'))) {
+                $result[] = $file;
+                if ($recursive &amp;&amp; is_dir($file)) {
+                    $result = array_merge($result, self::getFiles($file, $args));
+                }
+            }
+        }
+    } else {
+        $result = $files;
+    }
+    return $result;
+}</pre>
+&nbsp;
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-12-28T00:00:00+11:00" pubdate data-updated="true">Dec 28<span>th</span>, 2012</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/28/javascript-generating-a-readable-foreground-colour-on-any-background-colour/">JavaScript: Generating a Readable Foreground Colour on Any Background Colour</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix">This issue had been rolling around in my mind in the past but I never had to implement something like it before.
+
+I had a text box where I set the background colour based on a colour picker but that meant that the text value would remain black - which wouldn&#8217;t be visible if the selected colour was also black, or even dark.
+<div style="text-align: center;"><a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-28-at-3.40.07-PM.png"><img class="size-full wp-image-1104" title="Screen Shot 2012-12-28 at 3.40.07 PM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-28-at-3.40.07-PM.png" alt="" width="163" height="30" /></a><a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-28-at-3.39.55-PM.png"><img class="size-full wp-image-1105" title="Screen Shot 2012-12-28 at 3.39.55 PM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-28-at-3.39.55-PM.png" alt="" width="167" height="30" /></a></div>
+My solution was to pick a colour that differed as much as possible from black - white - and apply this methodology with all colours. If our background was white, then I would use black as the foreground. For colours in between I used a threshold - as soon as the background colour passed it (as it became darker), I would change the foreground from black to white (making it lighter).
+
+I believe the best foreground should be either white or black, since it should differ from the background as much as possible - so linear interpolation between black and white wouldn&#8217;t help here.
+
+My method was to calculate a distance from white, which is the origin at (0,0). The x-axis is <strong>saturation</strong> and the y-axis is <strong>(1 - value)</strong> in the <a href="http://en.wikipedia.org/wiki/HSL_and_HSV" target="_blank">HSV model</a>. Using a threshold amount of 0.5, I created a radius around white where my foreground is black. Any position outside this radius means my foreground is white. By using multipliers I was able to create an ellipse shape to my liking.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/1.png"><img class="aligncenter size-full wp-image-1097" title="1" src="http://localsite.com/ak/wp-content/uploads/2012/12/1.png" alt="" width="256" height="256" /></a>
+
+I ran into another issue - for colours that appear light - yellow, green, light blue - I needed to allow more black. So I stretched the radius in the x-axis for these colours.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/2.png"><img class="aligncenter size-full wp-image-1098" title="2" src="http://localsite.com/ak/wp-content/uploads/2012/12/2.png" alt="" width="256" height="256" /></a>
+
+This methodology is generic enough to be applied anywhere this problem comes up, but for my implementation I used <a href="http://jquery.com/" target="_blank">jQuery</a> and <a href="http://bgrins.github.com/TinyColor/" target="_blank">TinyColor</a>.
+
+See an <strong>online demo</strong> here: <a href="http://aramkocharyan.github.com/readable-color/index.html" target="_blank">http://aramkocharyan.github.com/readable-color/index.html</a>
+Grab the <strong>source</strong>: <a href="https://github.com/aramkocharyan/readable-color/" target="_blank">https://github.com/aramkocharyan/readable-color/</a>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-12-27T00:00:00+11:00" pubdate data-updated="true">Dec 27<span>th</span>, 2012</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/27/php-array_flip-with-values-containing-arrays/">PHP: Array_flip() With Values Containing Arrays</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix">I had the following:
+<pre class="lang:php decode:true">$attributeTypes = array(
+    'color' =&gt; array('background', 'border-color'),
+    'size' =&gt; array('border-width')
+);
+$attributeTypesInverse = array_flip($attributeTypes);</pre>
+But I got this warning: Warning: array_flip() [function.array-flip]: Can only flip STRING and INTEGER values!
+
+So I wrote a new function to support arrays as values, not just integers or strings. Keep in mind though that the values of the arrays in values must be integers or strings in order to be valid keys for the resulting array.
+<pre class="lang:php decode:true">function array_flip_r($array) {
+    $result = array();
+    foreach ($array as $k=&gt;$v) {
+        if (is_array($v)) {
+            foreach ($v as $u) {
+                _array_flip_r($result, $k, $u);
+            }
+        } else {
+            _array_flip_r($result, $k, $v);
+        }
+    }
+    return $result;
+}
+
+function _array_flip_r(&amp;$array, $k, $v) {
+    if (is_string($v) || is_int($v)) {
+        $array[$v] = $k;
+    } else {
+        trigger_error("Values must be STRING or INTEGER", E_USER_WARNING);
+    }
+}</pre>
+&nbsp;
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-12-27T00:00:00+11:00" pubdate data-updated="true">Dec 27<span>th</span>, 2012</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/27/crayon-theme-editor/">Crayon Theme Editor</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix">The Theme Editor allows you to duplicate and modify custom themes compatible with Crayon using an integrated user interface and <em>no CSS knowledge</em> whatsoever. Of course, make changes to your theme by editing the CSS is also possible before and after using the theme editor.
+
+You can access the theme editor in Wordpress admin under <strong>Settings &gt; Crayon</strong>:
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2013-01-02-at-1.44.40-AM.png"><img class="aligncenter size-full wp-image-1138" title="Screen Shot 2013-01-02 at 1.44.40 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2013-01-02-at-1.44.40-AM.png" alt="" width="756" height="236" /></a>
+
+The Theme section displays the information about the current theme, a toolbar for performing theme editor actions and the Live Preview. Modifying any settings automatically refreshes this preview before submitting the settings page.
+<h2>Theme Types</h2>
+Crayon stores the <strong>Stock Themes</strong> which come with the plugin under this path:
+
+<code>wp-content/plugins/crayon-syntax-highlighter/themes</code>
+
+To allow modifying these themes and preserving changes, Crayon stores <strong>User Themes</strong> under this path:
+
+<code>wp-content/uploads/crayon-syntax-highlighter/themes</code>
+
+This avoids any changes being overwritten during updates to the plugin. Stock themes can&#8217;t be deleted or modified for this reason - unless you enable <code>CRAYON_DEBUG</code> in <code>globals.php</code>. Of course, modifying the theme CSS is independent of the Theme Editor, but keep in mind that your changes will be lost when updating the plugin.
+<h2>Creating Themes</h2>
+Start by selecting an existing theme which is the closest appearance you&#8217;re trying to create. To play it safe, start with the Classic theme. Click Duplicate and type in a new name.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-12.54.10-AM.png"><img class="aligncenter size-full wp-image-1110" title="Screen Shot 2012-12-30 at 12.54.10 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-12.54.10-AM.png" alt="" width="280" height="160" /></a>
+
+The theme is duplicated as a User Theme. Now click Edit to load the Theme Editor.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.01.26-AM.png"><img class="aligncenter size-full wp-image-1112" title="Screen Shot 2012-12-30 at 1.01.26 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.01.26-AM.png" alt="" width="785" height="339" /></a>
+
+One handy feature of the editor is that modifications take place live just like in the regular settings page - so changing the language or settings will also change them in the theme editor, allowing you to see how your changes will look like for different settings.
+
+On the right side you&#8217;ll see the editor controls. The first tab allows you to change information about the theme. Saving the theme is possible at any time and doesn&#8217;t require a reload unless you change the name of the theme. You can also look at the CSS with a link below the name.
+
+Next, I might want to change the appearance of the frame and line colours.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.06.39-AM.png"><img class="aligncenter size-full wp-image-1113" title="Screen Shot 2012-12-30 at 1.06.39 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.06.39-AM.png" alt="" width="781" height="288" /></a>
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.07.43-AM.png"><img class="aligncenter size-full wp-image-1114" title="Screen Shot 2012-12-30 at 1.07.43 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.07.43-AM.png" alt="" width="779" height="375" /></a>
+
+Next, I can change the line numbers.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.19.57-AM.png"><img class="aligncenter size-full wp-image-1115" title="Screen Shot 2012-12-30 at 1.19.57 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.19.57-AM.png" alt="" width="777" height="549" /></a>
+
+And then the toolbar.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.55.15-AM.png"><img class="aligncenter size-full wp-image-1116" title="Screen Shot 2012-12-30 at 1.55.15 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-1.55.15-AM.png" alt="" width="780" height="409" /></a>
+
+Finally, we can take a look at the highlighting! I&#8217;ve left this till last since I wanted to make sure I have the overall look of the new theme first.
+
+<a href="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-2.03.45-AM.png"><img class="aligncenter size-full wp-image-1118" title="Screen Shot 2012-12-30 at 2.03.45 AM" src="http://localsite.com/ak/wp-content/uploads/2012/12/Screen-Shot-2012-12-30-at-2.03.45-AM.png" alt="" width="778" height="750" /></a>
+
+And there we have it, a new theme! Tinker with the settings until you have the right look. This theme is obviously a 5 minute demonstration and the some of the stock themes that people have put together look amazing comparatively - but the important thing to take away from this post is that creating themes is now super quick and very much integrated into Crayon!
+<h2>Submitting a Theme</h2>
+Remember, if you happen to create a theme you&#8217;re especially proud of, please use the <strong>Submit</strong> button - it will zip up your theme and email it to me and I&#8217;ll include it as a Stock Theme for others to enjoy!
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-12-14T00:00:00+11:00" pubdate data-updated="true">Dec 14<span>th</span>, 2012</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/14/crayon-with-retina-support/">Crayon With Retina Support</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix">Crayon 1.17 beta adds retina support for the buttons in the toolbar on high resolution devices.
+
+[caption id=&#8221;attachment_1081&#8221; align=&#8221;aligncenter&#8221; width=&#8221;556&#8221;]<a href="http://localsite.com/ak/wp-content/uploads/2012/12/non-retina.png"><img class="size-full wp-image-1081" title="non-retina" src="http://localsite.com/ak/wp-content/uploads/2012/12/non-retina.png" alt="" width="556" height="97" /></a> Before[/caption]
+
+[caption id=&#8221;attachment_1082&#8221; align=&#8221;aligncenter&#8221; width=&#8221;556&#8221;]<a href="http://localsite.com/ak/wp-content/uploads/2012/12/retina.png"><img class="size-full wp-image-1082" title="retina" src="http://localsite.com/ak/wp-content/uploads/2012/12/retina.png" alt="" width="556" height="97" /></a> After[/caption]
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2012-12-10T00:00:00+11:00" pubdate data-updated="true">Dec 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/10/resources-loaded-in-crayon/">Resources Loaded in Crayon</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix">I&#8217;ve made Crayon with modularity in mind to allow reuse of any components if needed. Here are the Javascript components:
+<ul>
+	<li>js/util.js</li>
+	<li>js/crayon.js</li>
+	<li>js/jquery.popup.js</li>
+	<li>js/fancybox/jquery.fancybox.init.pack.js</li>
+	<li>js/fancybox/fancybox_init.js</li>
+	<li>util/tag-editor/crayon_te.js</li>
+</ul>
+`util.js` has several JavaScript methods that are shared across the admin settings, tag editor, theme editor (coming soon) and of course the front end which displays the Crayons.
+
+`crayon.js` is the main script which defines the toolbar button events and other settings, like toggling etc.
+
+`jquery.popup.js` is adapted jquery plugin I use to open a code popup. As of the latest beta commit, disabling the popup now removes this resource.
+
+`jquery.fancybox.init.pack.js` is a custom version of Fancybox I modified to allow passing in <a href="http://localsite.com/ak/crayon/initialising-fancybox-with-custom-objects/">my own fancybox instance</a> without disrupting other fancybox plugins that may be running - <a href="http://localsite.com/ak/projects/crayon-syntax-highlighter/#comment-720709080">otherwise errors occur</a>.
+
+`fancybox_init.js` serves only the purpose of kickstarting Fancybox with my custom objects, and I agree this is somewhat wasteful of a single request. Although it&#8217;ll take less time to transfer than a larger file, I imagine there&#8217;s a fixed cost in the latency required to make the request. Mostly for the reason of reducing the number of modules needed, I&#8217;ve removed it in the latest beta commit and placed it in util.js.
+
+`crayon_te.js` is the tag editor. This appears in the front end only if you check &#8220;Display the Tag Editor in any TinyMCE instances on the frontend (e.g. bbPress)&#8221; - which is off since 1.15 on fresh installs. Having &#8220;Attempt to load Crayon&#8217;s CSS and JavaScript only when needed&#8221; still needs TinyMCE to be disabled on the front end as <a href="http://localsite.com/ak/php/loading-css-and-javascript-only-when-required-in-a-wordpress-plugin/">I&#8217;ve now mentioned here</a>.
+
+For CSS:
+<ul>
+	<li>css/crayon_style.css</li>
+	<li>css/global_style.css</li>
+	<li>js/fancybox/jquery.fancybox.css</li>
+	<li>themes/classic/classic.css</li>
+	<li>fonts/monaco.css</li>
+</ul>
+`crayon_style.css` is a the foundation style.
+`global_style.css` are styles shared across the admin and front end (such as the tag editor, which can appear anywhere TinyMCE appears).
+`jquery.fancybox.css` is once again for Fancybox and only loads if the Tag Editor is enabled on the front end.
+`classic.css` is the classic theme. `monaco.css` is the default font. Since there can be any combination of the last two, mixing them is not practical.
+
+By far the best technique to reduce the number of requests is to use <a href="http://wordpress.org/extend/plugins/w3-total-cache/" target="_blank">WP Total Cache</a>, which I have ensured Crayon is compatible with since 1.16. This will reduce the JS and CSS to a single file for the entire site. This allows the developer (me) to create modular and reusable components while allowing the client (you) and end users to experience better efficiency. Hope that helps!
+</div>
+  
+  
+
+
+        </article>
+      
+    </div>
+
+    <ul class="pager">
+      
+        <li class="previous"><a href="/blog/page/2/">&larr;&nbsp;Older</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+        <li class="next disabled"><a href="#">Newer&nbsp;&rarr;</a></li>
+      
+    </ul>
+  </div>
+
+  
+    <aside class="sidebar col-md-3">
+      
+        <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2013/05/28/jekyll/">Hello Jekyll, Goodbye Wordpress</a>
+    
+    <a class="list-group-item " href="/blog/2013/01/15/minimizing-code-in-crayon/">Minimizing Code in Crayon</a>
+    
+    <a class="list-group-item " href="/blog/2013/01/03/creating-a-simple-wordpress-widget/">Creating a Simple Wordpress Widget</a>
+    
+    <a class="list-group-item " href="/blog/2012/12/30/php-sending-an-email-attachment/">PHP: Sending an Email Attachment</a>
+    
+    <a class="list-group-item " href="/blog/2012/12/30/php-get-files-in-a-directory-recursively/">PHP: Get Files in a Directory Recursively</a>
+    
+  </div>
+</section>
+
+
+
+
+
+
+      
+    </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2016 - Aram Kocharyan<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr-2.0.js"></script>
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </body>
+</html>
